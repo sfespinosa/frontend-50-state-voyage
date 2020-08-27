@@ -384,7 +384,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   -webkit-transition: 300ms ease 0s;
   -moz-transition: 300ms ease 0s;
   -ms-transition: 300ms ease 0s;
-  -o-transform: 300ms ease 0s;
+  /* -o-transform: 300ms ease 0s; */
   transition: 300ms ease 0s; }
 
 .noUi-active {
@@ -2789,7 +2789,7 @@ Created using IcoMoon - icomoon.io
   display: inline-block;
   font: normal normal normal 14px/1 'Nucleo Outline';
   font-size: inherit;
-  speak: none;
+  /* speak: none; */
   text-transform: none;
   /* Better Font Rendering */
   -webkit-font-smoothing: antialiased;
@@ -3845,7 +3845,8 @@ img {
     background-color: #f2f2f2; }
   .footer nav {
     display: inline-block;
-    float: left; }
+    /* float: left; */
+  }
   .footer ul {
     margin-bottom: 0;
     padding: 0;
@@ -3948,7 +3949,7 @@ img {
       box-shadow: 0px 5px 50px 0px rgba(0, 0, 0, 0.2); }
 
 .index-page .page-header {
-  height: 125vh; }
+  height: 1vh; }
   .index-page .page-header .container > .content-center {
     top: 37%; }
   .index-page .page-header .category-absolute {
@@ -3966,7 +3967,7 @@ img {
     padding-top: 26vh;
     color: #FFFFFF;
     z-index: 2;
-    position: relative; }
+    position: center; }
   .landing-page .header .share {
     margin-top: 150px; }
   .landing-page .header h1 {
@@ -4269,7 +4270,7 @@ img {
     height: 100%;
     z-index: 1;
     text-align: center;
-    position: relative; }
+    position: center; }
   .page-header .category,
   .page-header .description {
     color: rgba(255, 255, 255, 0.8); }
@@ -5961,3 +5962,7 @@ td.rdtYear:hover {
   .nav-tabs {
     padding-left: 10px;
     padding-right: 10px; } }
+
+.form-body .content {
+  position: relative !important;
+}
