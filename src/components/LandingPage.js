@@ -45,8 +45,7 @@ function LandingPage() {
                       block
                       className="btn-round"
                       color="info"
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      href="/login"
                       size="lg"
                     >
                       Login
@@ -55,8 +54,7 @@ function LandingPage() {
                       block
                       className="btn-round"
                       color="info"
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      href="/signup"
                       size="lg"
                     >
                       Create Account

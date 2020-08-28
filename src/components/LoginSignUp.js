@@ -45,9 +45,14 @@ function LoginSignUp(props) {
     };
   }, []);
 
+  const handleSubmit = (e, path) => {
+    e.preventDefault()
+    props.handleSubmit(formData, path)
+  }
+
   const renderLoginForm = () => {
     return (
-      <Form action="" className="form" method="">
+      <Form className="form" onSubmit={(e) => handleSubmit(e, 'login')}>
         <CardHeader className="text-center">
           <div className="logo-container">
             <img alt="..." src={require("../assets/img/now-logo.png")}></img>
@@ -90,20 +95,18 @@ function LoginSignUp(props) {
             block
             className="btn-round"
             color="info"
-            href="#pablo"
-            onClick={(e) => e.preventDefault()}
             size="lg"
           >
             Login
           </Button>
         <div className="pull-left">
           <h6>
-            <a className="link" href="#pablo" onClick={(e) => e.preventDefault()}>Create Account</a>
+            <a className="link" href="/signup">Create Account</a>
           </h6>
         </div>
         <div className="pull-right">
           <h6>
-            <a className="link" href="#pablo" onClick={(e) => e.preventDefault()}> Need Help? </a>
+            <a className="link" href="/">Back Home</a>
           </h6>
         </div>
         </CardFooter>
@@ -112,7 +115,7 @@ function LoginSignUp(props) {
 
     const renderSignUpForm = () => {
       return (
-        <Form action="" className="form" method="">
+        <Form className="form" onSubmit={(e) => handleSubmit(e, 'users')}>
           <CardHeader className="text-center">
             <div className="logo-container">
               <img alt="..." src={require("../assets/img/now-logo.png")}></img>
@@ -215,20 +218,18 @@ function LoginSignUp(props) {
               block
               className="btn-round"
               color="info"
-              href="#pablo"
-              onClick={(e) => e.preventDefault()}
               size="lg"
             >
-              Login
+              Create an Account
             </Button>
           <div className="pull-left">
             <h6>
-              <a className="link" href="#pablo" onClick={(e) => e.preventDefault()}>Create Account</a>
+              <a className="link" href="/login">Login here</a>
             </h6>
           </div>
           <div className="pull-right">
             <h6>
-              <a className="link" href="#pablo" onClick={(e) => e.preventDefault()}> Need Help? </a>
+              <a className="link" href="/">Back Home</a>
             </h6>
           </div>
           </CardFooter>
@@ -245,6 +246,7 @@ function LoginSignUp(props) {
           }}
         ></div>
         <div className="content">
+        <div className="content-center brand">
           <Container className='form-body'>
             <Col className="ml-auto mr-auto form-body" md="4">
               <Card className="card-login card-plain">
@@ -252,6 +254,7 @@ function LoginSignUp(props) {
               </Card>
             </Col>
           </Container>
+          </div>
         </div>
         {/* <TransparentFooter /> */}
       </div>
