@@ -1,23 +1,27 @@
 import React from 'react'
 import NavBar from './NavBar'
 import USMap from './USMap'
-import {withRouter} from 'react-router-dom'
+import { connect } from 'react-redux'
 
 class MainContent extends React.Component {
 
-    handleLogout= () => {
-        localStorage.clear()
-        this.props.history.push('/')
+    state = {
+        viewEstablishmentMap: false
     }
 
     render(){
         return (
             <div className='main-content'>
-                <NavBar logout={this.handleLogout}/>
+                <NavBar logout={this.props.logout}/>
+                {/* {this.state.viewEstablishmentMap ? <ProfilePage/> : <USMap/>} */}
                 <USMap/>
             </div>
         )
     }
 }
 
-export default withRouter(MainContent)
+const mapStateToProps = state => {
+    return {userInfo: state.userInfo}
+}
+
+export default connect(mapStateToProps)(MainContent)

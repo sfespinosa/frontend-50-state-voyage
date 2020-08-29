@@ -24,7 +24,7 @@ function NavBar(props){
                 </button>
             <Nav navbar>
                 <NavItem>
-                    <NavLink href="#pablo" onClick={e => e.preventDefault()}>
+                    <NavLink href="/main">
                         Home <span className="sr-only">(current)</span>
                     </NavLink>
                 </NavItem>
@@ -36,7 +36,7 @@ function NavBar(props){
             </Nav>
             <Nav className="ml-auto" navbar>
                 <NavItem className='active'>
-                    <NavLink>
+                    <NavLink href='/profile'>
                     <i className="now-ui-icons users_circle-08"></i>
                     <p>View Your Profile</p>
                     </NavLink>

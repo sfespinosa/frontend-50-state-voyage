@@ -9,8 +9,7 @@ path:hover {
 
 .us-state-map {
     position: center;
-    margin-top: -20px;
     background: white;
-    height: 93vh;
+    height: 92vh;
     width: 100%;
 }
