@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import '../assets/css/us-map.css';
 import USAMap from "react-usa-map";
+import { connect } from 'react-redux';
+import { fetchAllUsStates } from '../actions/usStateActions'
 
 class USMap extends Component {
+
+    componentDidMount(){
+        this.props.fetchAllUsStates()
+    }
+
   /* mandatory */
-    mapHandler = (event) => {
-        alert(event.target.dataset.name);
+    mapHandler = (e) => {
+        this.props.toggleDrawer()
     };
 
     /* optional customization of filling per state and calling custom callbacks per state */
@@ -30,4 +37,8 @@ class USMap extends Component {
     }
 }
 
-export default USMap;
+const mapStateToProps = state => {
+    return { usStates: state.usStatesInfo.usStates }
+}
+
+export default connect(mapStateToProps, {fetchAllUsStates})(USMap);
