@@ -19,14 +19,13 @@ class USMap extends Component {
 
     /* optional customization of filling per state and calling custom callbacks per state */
     statesCustomConfig = () => {
-        return {
-        "NJ": {
-            fill: "green",
-        },
-        "NY": {
-            fill: "#CC0000"
-        }
-        };
+        let customStates = {}
+        this.props.stateCollection.map(state => {
+            customStates[state.abbrv] =  {
+                    fill: 'green'
+                }
+        })
+        return customStates
     };
 
     render() {
@@ -39,7 +38,10 @@ class USMap extends Component {
 }
 
 const mapStateToProps = state => {
-    return { usStates: state.usStatesInfo.usStates }
+    return { 
+        usStates: state.usStatesInfo.usStates,
+        stateCollection: state.stateCollectionInfo.stateCollection
+    }
 }
 
 export default connect(mapStateToProps, {fetchAllUsStates})(USMap);

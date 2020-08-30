@@ -13,7 +13,7 @@ export function addToStateCollection(formData){
         .then(json => {
             if (!json.error) {
                 localStorage.token = json.token
-                dispatch({type: 'ADD_TO_STATE_COLLECTION', stateCollection: json})
+                dispatch({type: 'ADD_TO_STATE_COLLECTION', stateCollection: json.us_state})
             } else {
                 alert(json.error)
             }

@@ -32,7 +32,7 @@ class MainContent extends React.Component {
             <div className='main-content'>
                 <NavBar logout={this.props.logout}/>
                 {/* {this.state.viewEstablishmentMap ? <EstablishmentMap/> : <USMap/>} */}
-                <StatesDrawer show={this.state.drawerOpen} usState={this.state.currentUsState} userId={this.props.userInfo.user.id}/>
+                {this.props.userInfo.user ? <StatesDrawer show={this.state.drawerOpen} usState={this.state.currentUsState} userId={this.props.userInfo.user.id} stateCollection={this.props.stateCollection}/> : null}
                 {this.state.drawerOpen ? <Backdrop toggleDrawer={this.toggleStatesDrawer}/> : null}
                 <USMap toggleDrawer={this.toggleStatesDrawer}/>
             </div>
@@ -41,7 +41,10 @@ class MainContent extends React.Component {
 }
 
 const mapStateToProps = state => {
-    return {userInfo: state.userInfo}
+    return {
+        userInfo: state.userInfo,
+        stateCollection: state.stateCollectionInfo.stateCollection
+    }
 }
 
 export default connect(mapStateToProps)(MainContent)

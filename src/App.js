@@ -10,6 +10,9 @@ import ProfilePage from './containers/ProfilePage'
 class App extends React.Component {
 
   componentDidMount(){
+    if(localStorage.token === 'undefined'){
+      localStorage.clear()
+    }
     if(localStorage.token){
       this.props.handlePersist()
       if (this.props.history.location.pathname !== '/profile'){
