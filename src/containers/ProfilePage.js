@@ -15,7 +15,7 @@ import {
 
 // core components
 import NavBar from './NavBar'
-import ProfilePageHeader from "./ProfilePageHeader";
+import ProfilePageHeader from "../components/ProfilePageHeader";
 import EditProfileForm from '../components/EditProfileForm'
 
 function ProfilePage(props) {

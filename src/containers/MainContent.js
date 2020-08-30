@@ -9,13 +9,22 @@ class MainContent extends React.Component {
 
     state = {
         viewEstablishmentMap: false,
-        drawerOpen: false
+        drawerOpen: false,
+        currentUsState: {}
     }
 
-    toggleStatesDrawer = () => {
-        this.setState({
-            drawerOpen: !this.state.drawerOpen
-        })
+    toggleStatesDrawer = (state) => {
+        if (this.state.drawerOpen === false) {
+            this.setState({
+                drawerOpen: !this.state.drawerOpen,
+                currentUsState: state
+            })
+        } else {
+            this.setState({
+                drawerOpen: !this.state.drawerOpen,
+                currentUsState: {}
+            })
+        }
     }
 
     render(){
@@ -23,7 +32,7 @@ class MainContent extends React.Component {
             <div className='main-content'>
                 <NavBar logout={this.props.logout}/>
                 {/* {this.state.viewEstablishmentMap ? <EstablishmentMap/> : <USMap/>} */}
-                <StatesDrawer show={this.state.drawerOpen} />
+                <StatesDrawer show={this.state.drawerOpen} usState={this.state.currentUsState} userId={this.props.userInfo.user.id}/>
                 {this.state.drawerOpen ? <Backdrop toggleDrawer={this.toggleStatesDrawer}/> : null}
                 <USMap toggleDrawer={this.toggleStatesDrawer}/>
             </div>

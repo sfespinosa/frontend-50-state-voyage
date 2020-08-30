@@ -8,11 +8,13 @@ class USMap extends Component {
 
     componentDidMount(){
         this.props.fetchAllUsStates()
+        let dc = document.querySelector('circle.DC2')
+        dc.remove()
     }
 
-  /* mandatory */
+    /* Click handling for each state */
     mapHandler = (e) => {
-        this.props.toggleDrawer()
+        this.props.toggleDrawer(this.props.usStates.filter(state => state.abbrv === e.target.getAttribute('data-name'))[0])
     };
 
     /* optional customization of filling per state and calling custom callbacks per state */
@@ -20,7 +22,6 @@ class USMap extends Component {
         return {
         "NJ": {
             fill: "green",
-            clickHandler: (event) => console.log('Custom handler for NJ', event.target.dataset)
         },
         "NY": {
             fill: "#CC0000"
@@ -31,7 +32,7 @@ class USMap extends Component {
     render() {
         return (
         <div className='us-map-container'>
-            <USAMap className='us-map' customize={this.statesCustomConfig()} onClick={this.mapHandler} />
+            <USAMap title='Click a state to get started!' className='us-map' customize={this.statesCustomConfig()} onClick={this.mapHandler} />
         </div>
         );
     }

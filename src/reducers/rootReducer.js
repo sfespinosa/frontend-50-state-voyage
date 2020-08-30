@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import userReducer from './userReducer'
 import usStateReducer from './usStateReducer'
+import stateCollectionReducer from './stateCollectionReducer';
 
 const rootReducer = combineReducers({
     userInfo: userReducer,
-    usStatesInfo: usStateReducer
+    usStatesInfo: usStateReducer,
+    stateCollectionInfo: stateCollectionReducer
 })
 
 export default rootReducer

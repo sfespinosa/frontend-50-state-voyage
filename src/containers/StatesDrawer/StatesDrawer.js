@@ -1,19 +1,34 @@
 import React from 'react'
+import DrawerHeader from '../../components/DrawerHeader'
+import DrawerBody from '../../components/DrawerBody'
 import './StatesDrawer.css'
+import { connect } from 'react-redux'
+import { addToStateCollection } from '../../actions/stateCollectionActions'
 
-export default class StatesDrawer extends React.Component {
+class StatesDrawer extends React.Component {
+
+    handleSwitch = (state, usId) => {
+        if (state) {
+            let formData = {
+                user_id: this.props.userId,
+                us_state_id: usId
+            }
+            this.props.addToStateCollection(formData)
+        } else {
+
+        }
+        console.log('USStateId:', usId);
+        console.log('new state:', state);
+    }
 
     render(){
-        // let drawerClasses = 'side-drawer'
-
-        // if(this.props.show) {
-        //     drawerClasses = 'side-drawer open'
-        // }
-
     return(
         <div className={this.props.show ? 'side-drawer open' : 'side-drawer'}>
-            <h1>Hello, I'm sliding!</h1>
+            <DrawerHeader {...this.props.usState} handleSwitch={this.handleSwitch} show={this.props.show}/>
+            <DrawerBody />
         </div>
         )
     }
 }
+
+export default connect(null, {addToStateCollection})(StatesDrawer)

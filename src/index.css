@@ -12,3 +12,24 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.drawer-header {
+  background: #2CA8FF; /* Green background with 30% opacity */
+  color: white;
+  text-align: center;
+  padding: 15px 0px 1px 0px;
+}
+
+.flag-img {
+  max-height: 250px;
+  box-shadow: 10px;
+  border-style: outset;
+  border-color: white;
+}
+
+.drawer-body {
+  background: white !important; /* Green background with 30% opacity */
+  color: black;
+  text-align: center;
+  margin: 15px;
+}
