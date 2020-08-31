@@ -58,7 +58,7 @@ class StatesDrawer extends React.Component {
             <div className={this.props.show ? 'side-drawer open' : 'side-drawer'}>
                 <DrawerHeader {...this.props.usState} handleSwitch={this.handleSwitch} show={this.props.show} allStateCollections={this.props.allStateCollections} visited={this.state.visited}/>
                 <DrawerBody toggleModal={this.toggleModal}/>
-                <EstablishmentPopUp modalOpen={this.state.modalOpen} toggleModal={this.toggleModal}/>
+                <EstablishmentPopUp currentState={this.props.usState} modalOpen={this.state.modalOpen} toggleModal={this.toggleModal}/>
             </div>
         )}
 }

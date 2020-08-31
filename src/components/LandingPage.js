@@ -3,8 +3,8 @@ import React from "react";
 
 // reactstrap components
 import { Container, Button } from "reactstrap";
-// core components
 
+// core components
 function LandingPage() {
   let pageHeader = React.createRef();
 

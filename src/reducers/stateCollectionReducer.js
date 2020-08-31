@@ -9,9 +9,10 @@ export default function stateCollectionReducer(state = { stateCollection: [], al
         case 'ADD_TO_STATE_COLLECTION':
             return { stateCollection: [...state.stateCollection, action.stateCollection], allStateCollections: [...state.allStateCollections, action.allStateCollections], loading: false }
         case 'REMOVE_FROM_STATE_COLLECTION':
-            let newAllState = state.allStateCollections.filter(visited => visited.id !== action.state.id)
-            let newStateCollection = state.stateCollection.filter(usState => usState.name !== action.state.us_state.name)
-            return { stateCollection: newStateCollection, allStateCollections: newAllState, loading: false }
+            return { 
+                stateCollection: state.stateCollection.filter(usState => usState.name !== action.state.us_state.name), 
+                allStateCollections: state.allStateCollections.filter(visited => visited.id !== action.state.id), 
+                loading: false }
         default:
             return state
     }

@@ -37,7 +37,12 @@ class App extends React.Component {
 
   requireAuthProfile = () => {
     if (localStorage.token){
-      return <ProfilePage user={this.props.userInfo.user} editUserProfile={this.props.editUserProfile} logout={this.handleLogout} deleteUser={this.props.deleteUser}/>
+      return <ProfilePage 
+        user={this.props.userInfo.user} 
+        editUserProfile={this.props.editUserProfile} 
+        logout={this.handleLogout} 
+        deleteUser={this.props.deleteUser} 
+        stateCollection={this.props.stateCollection}/>
     } else {
       this.props.history.push('/login')
     }
@@ -63,7 +68,8 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {userInfo: state.userInfo}
+  return {userInfo: state.userInfo,
+  stateCollection: state.stateCollectionInfo.stateCollection}
 }
 
 export default connect(mapStateToProps, {handleLoginSignUp, handlePersist, editUserProfile, deleteUser})(withRouter(App));

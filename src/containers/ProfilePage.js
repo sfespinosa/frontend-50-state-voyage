@@ -45,7 +45,7 @@ function ProfilePage(props) {
     <>
       <div className="wrapper">
         <NavBar logout={props.logout}/>
-        <ProfilePageHeader user={props.user}/>
+        <ProfilePageHeader user={props.user} stateCollection={props.stateCollection}/>
         <div className="section">
           <Container>
             <div className="button-container">

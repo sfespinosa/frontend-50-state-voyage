@@ -43,11 +43,11 @@ function ProfilePageHeader(props) {
           <p className="category">{props.user.location}</p>
           <div className="content">
             <div className="social-description">
-              <h2>26</h2>
+              <h2>{props.stateCollection.length}</h2>
               <p>States Visited</p>
             </div>
             <div className="social-description">
-              <h2>26</h2>
+              <h2>{50-props.stateCollection.length}</h2>
               <p>States Left</p>
             </div>
             </div>
