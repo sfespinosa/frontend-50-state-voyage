@@ -14,6 +14,7 @@ const SearchEstablishmentInput = (props) => {
             origin: new window.google.maps.LatLngBounds({lat: props.currentState.capital_lat, lng: props.currentState.capital_lng}),
         }
         );
+        autocomplete.id = 'autocomplete-menu'
         autocomplete.addListener("place_changed", onPlaceChanged);
     
         function onPlaceChanged() {

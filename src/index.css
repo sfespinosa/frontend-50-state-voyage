@@ -65,6 +65,8 @@ code {
   color: black;
   border-radius: 4px;
   border: 1px solid #E3E3E3;
+  z-index: 1000 !important;
+  position: 'absolute' !important;
 }
 
 .collection-form {
@@ -76,4 +78,9 @@ code {
   border: 1px solid #E3E3E3;
   border-radius: 4px;
   color: black
+}
+
+#autocomplete-menu {
+  z-index: 1000 !important;
+  position: 'absolute';
 }
