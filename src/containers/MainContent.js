@@ -3,7 +3,7 @@ import NavBar from './NavBar'
 import USMap from './USMap'
 import StatesDrawer from './StatesDrawer/StatesDrawer'
 import Backdrop from './StatesDrawer/Backdrop'
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 class MainContent extends React.Component {
 
@@ -34,7 +34,7 @@ class MainContent extends React.Component {
                 {/* {this.state.viewEstablishmentMap ? <EstablishmentMap/> : <USMap/>} */}
                 {this.props.userInfo.user ? <StatesDrawer show={this.state.drawerOpen} usState={this.state.currentUsState} userId={this.props.userInfo.user.id} stateCollection={this.props.stateCollection}/> : null}
                 {this.state.drawerOpen ? <Backdrop toggleDrawer={this.toggleStatesDrawer}/> : null}
-                <USMap toggleDrawer={this.toggleStatesDrawer}/>
+                <USMap toggleDrawer={this.toggleStatesDrawer}/>                
             </div>
         )
     }

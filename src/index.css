@@ -33,3 +33,10 @@ code {
   text-align: center;
   margin: 15px;
 }
+
+.establishment-popup-header {
+  /* margin: auto; */
+  text-align: center;
+  color: white;
+  background: #2CA8FF;
+}

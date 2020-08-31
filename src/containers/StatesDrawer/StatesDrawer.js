@@ -1,6 +1,7 @@
 import React from 'react'
 import DrawerHeader from '../../components/DrawerHeader'
 import DrawerBody from '../../components/DrawerBody'
+import EstablishmentPopUp from '../EstablishmentPopUp'
 import './StatesDrawer.css'
 import { connect } from 'react-redux'
 import { addToStateCollection, fetchAllStateCollections, removeFromStateCollection } from '../../actions/stateCollectionActions'
@@ -8,7 +9,8 @@ import { addToStateCollection, fetchAllStateCollections, removeFromStateCollecti
 class StatesDrawer extends React.Component {
 
     state = {
-        visited: false
+        visited: false,
+        modalOpen: false
     }
 
     componentDidMount(){
@@ -27,11 +29,18 @@ class StatesDrawer extends React.Component {
         })
     }
 
+    toggleModal = () => {
+        this.setState({
+            modalOpen: !this.state.modalOpen
+        })
+    }
+
     handleSwitch = (state, usId) => {
+
         this.setState({
             visited: !this.state.visited
         })
-        
+
         if (state) {
             let formData = {
                 user_id: this.props.userId,
@@ -42,18 +51,16 @@ class StatesDrawer extends React.Component {
             let removedState = this.props.allStateCollections.find(collection => collection.user_id === this.props.userId && collection.us_state.id === usId)
             this.props.removeFromStateCollection(removedState)
         }
-        console.log('USStateId:', usId);
-        console.log('new state:', state);
     }
 
     render(){
-    return(
-        <div className={this.props.show ? 'side-drawer open' : 'side-drawer'}>
-            <DrawerHeader {...this.props.usState} handleSwitch={this.handleSwitch} show={this.props.show} allStateCollections={this.props.allStateCollections} visited={this.state.visited}/>
-            <DrawerBody />
-        </div>
-        )
-    }
+        return(
+            <div className={this.props.show ? 'side-drawer open' : 'side-drawer'}>
+                <DrawerHeader {...this.props.usState} handleSwitch={this.handleSwitch} show={this.props.show} allStateCollections={this.props.allStateCollections} visited={this.state.visited}/>
+                <DrawerBody toggleModal={this.toggleModal}/>
+                <EstablishmentPopUp modalOpen={this.state.modalOpen} toggleModal={this.toggleModal}/>
+            </div>
+        )}
 }
 
 const mapStateToProps = state => {

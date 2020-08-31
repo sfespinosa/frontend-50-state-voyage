@@ -3698,7 +3698,7 @@ img {
     border-bottom: none;
     padding-top: 24px;
     padding-right: 24px;
-    padding-bottom: 0;
+    padding-bottom: 20px;
     padding-left: 24px; }
     .modal-content .modal-header button {
       position: absolute;
@@ -3706,6 +3706,7 @@ img {
       top: 30px;
       outline: 0; }
     .modal-content .modal-header .title {
+      text-align: center;
       margin-top: 5px;
       margin-bottom: 0; }
   .modal-content .modal-body {
