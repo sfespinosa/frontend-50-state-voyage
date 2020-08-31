@@ -1,12 +1,17 @@
-export default function stateCollectionReducer(state = { stateCollection: [], loading: false}, action) {
+export default function stateCollectionReducer(state = { stateCollection: [], allStateCollections: [], loading: false}, action) {
     switch (action.type){
         case 'LOADING_STATE_COLLECTION':
             return {...state, loading: true}
         case 'USER_LOGGED_IN':
-            return { stateCollection: action.user.us_states, loading: false }
+            return { ...state, stateCollection: action.user.us_states, loading: false }
+        case 'FETCH_STATE_COLLECTIONS':
+            return { ...state, loading: false, allStateCollections: action.allStateCollections }
         case 'ADD_TO_STATE_COLLECTION':
-            debugger
-            return { stateCollection: [...state.stateCollection, action.stateCollection], loading: false }
+            return { stateCollection: [...state.stateCollection, action.stateCollection], allStateCollections: [...state.allStateCollections, action.allStateCollections], loading: false }
+        case 'REMOVE_FROM_STATE_COLLECTION':
+            let newAllState = state.allStateCollections.filter(visited => visited.id !== action.state.id)
+            let newStateCollection = state.stateCollection.filter(usState => usState.name !== action.state.us_state.name)
+            return { stateCollection: newStateCollection, allStateCollections: newAllState, loading: false }
         default:
             return state
     }

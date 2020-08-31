@@ -40,7 +40,8 @@ class USMap extends Component {
 const mapStateToProps = state => {
     return { 
         usStates: state.usStatesInfo.usStates,
-        stateCollection: state.stateCollectionInfo.stateCollection
+        stateCollection: state.stateCollectionInfo.stateCollection,
+        allStateCollections: state.stateCollectionInfo.allStateCollections
     }
 }
 

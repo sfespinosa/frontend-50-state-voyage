@@ -3,11 +3,35 @@ import DrawerHeader from '../../components/DrawerHeader'
 import DrawerBody from '../../components/DrawerBody'
 import './StatesDrawer.css'
 import { connect } from 'react-redux'
-import { addToStateCollection } from '../../actions/stateCollectionActions'
+import { addToStateCollection, fetchAllStateCollections, removeFromStateCollection } from '../../actions/stateCollectionActions'
 
 class StatesDrawer extends React.Component {
 
+    state = {
+        visited: false
+    }
+
+    componentDidMount(){
+        this.props.fetchAllStateCollections()
+    }
+
+    componentDidUpdate(prevProps){
+        if(prevProps.usState !== this.props.usState && this.props.usState !== {}){
+            this.stateVisited()
+        }
+    }
+
+    stateVisited = () => {
+        this.setState({
+            visited: !!this.props.allStateCollections.find(collection => collection.user_id === this.props.userId && collection.us_state.id === this.props.usState.id)
+        })
+    }
+
     handleSwitch = (state, usId) => {
+        this.setState({
+            visited: !this.state.visited
+        })
+        
         if (state) {
             let formData = {
                 user_id: this.props.userId,
@@ -15,7 +39,8 @@ class StatesDrawer extends React.Component {
             }
             this.props.addToStateCollection(formData)
         } else {
-
+            let removedState = this.props.allStateCollections.find(collection => collection.user_id === this.props.userId && collection.us_state.id === usId)
+            this.props.removeFromStateCollection(removedState)
         }
         console.log('USStateId:', usId);
         console.log('new state:', state);
@@ -24,11 +49,17 @@ class StatesDrawer extends React.Component {
     render(){
     return(
         <div className={this.props.show ? 'side-drawer open' : 'side-drawer'}>
-            <DrawerHeader {...this.props.usState} handleSwitch={this.handleSwitch} show={this.props.show}/>
+            <DrawerHeader {...this.props.usState} handleSwitch={this.handleSwitch} show={this.props.show} allStateCollections={this.props.allStateCollections} visited={this.state.visited}/>
             <DrawerBody />
         </div>
         )
     }
 }
 
-export default connect(null, {addToStateCollection})(StatesDrawer)
+const mapStateToProps = state => {
+    return { 
+        allStateCollections: state.stateCollectionInfo.allStateCollections
+    }
+}
+
+export default connect(mapStateToProps, {addToStateCollection, fetchAllStateCollections, removeFromStateCollection})(StatesDrawer)
