@@ -21,7 +21,7 @@ function LoginSignUp(props) {
   const [usernameFocus, setUsernameFocus] = React.useState(false);
   const [passwordFocus, setPasswordFocus] = React.useState(false);
   const [nameFocus, setNameFocus] = React.useState(false);
-  const [ageFocus, setAgeFocus] = React.useState(false);
+  const [birthdateFocus, setBirthdateFocus] = React.useState(false);
   const [locationFocus, setLocationFocus] = React.useState(false);
   const [emailFocus, setEmailFocus] = React.useState(false);
   const [formData, setFormData] = React.useState({})
@@ -137,19 +137,19 @@ function LoginSignUp(props) {
                 name='name'
               />
             </InputGroup>
-            <InputGroup className={"no-border input-lg" + (ageFocus ? " input-group-focus" : "")}>
+            <InputGroup className={"no-border input-lg" + (birthdateFocus ? " input-group-focus" : "")}>
               <InputGroupAddon addonType="prepend">
                 <InputGroupText>
                   <i className="now-ui-icons text_caps-small"></i>
                 </InputGroupText>
               </InputGroupAddon>
               <Input
-                placeholder="Age"
-                type="number"
-                onFocus={() => setAgeFocus(true)}
-                onBlur={() => setAgeFocus(false)}
+                placeholder="01/01/1999"
+                type="date"
+                onFocus={() => setBirthdateFocus(true)}
+                onBlur={() => setBirthdateFocus(false)}
                 onChange={handleFormChange}
-                name='age'
+                name='birthdate'
               />
             </InputGroup>
             <InputGroup className={"no-border input-lg" + (locationFocus ? " input-group-focus" : "")}>

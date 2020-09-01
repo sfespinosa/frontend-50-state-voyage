@@ -40,7 +40,8 @@ function ProfilePageHeader(props) {
             <img alt="..." src={require("../assets/img/default-avatar.png")}></img>
           </div>
           <h3 className="title">{props.user.name}</h3>
-          <p className="category">{props.user.location}</p>
+          <p className="category">{props.user.location}<br/>
+            Age: {props.user.age}</p>
           <div className="content">
             <div className="social-description">
               <h2>{props.stateCollection.length}</h2>

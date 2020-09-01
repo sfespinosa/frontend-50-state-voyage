@@ -19,7 +19,7 @@ function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) 
 
     // form styling
     const [nameFocus, setNameFocus] = React.useState(false);
-    const [ageFocus, setAgeFocus] = React.useState(false);
+    const [birthdateFocus, setBirthdateFocus] = React.useState(false);
     const [locationFocus, setLocationFocus] = React.useState(false);
     const [emailFocus, setEmailFocus] = React.useState(false);
 
@@ -38,7 +38,7 @@ function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) 
   // form submission
     const [formData, setFormData] = React.useState({
         name: user.name,
-        age: user.age,
+        birthdate: user.birthdate,
         location: user.location,
         email_address: user.email_address
     })
@@ -88,20 +88,20 @@ function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) 
                     value={formData.name}
                 />
                 </InputGroup>
-                <InputGroup className={"no-border input-lg" + (ageFocus ? " input-group-focus" : "")}>
+                <InputGroup className={"no-border input-lg" + (birthdateFocus ? " input-group-focus" : "")}>
                 <InputGroupAddon addonType="prepend">
                     <InputGroupText>
                     <i className="now-ui-icons text_caps-small"></i>
                     </InputGroupText>
                 </InputGroupAddon>
                 <Input
-                    placeholder="Age"
-                    type="number"
-                    onFocus={() => setAgeFocus(true)}
-                    onBlur={() => setAgeFocus(false)}
+                    placeholder="Birthdate"
+                    type="date"
+                    onFocus={() => setBirthdateFocus(true)}
+                    onBlur={() => setBirthdateFocus(false)}
                     onChange={handleFormChange}
-                    name='age'
-                    value={formData.age}
+                    name='birthdate'
+                    value={formData.birthdate}
                 />
                 </InputGroup>
                 <InputGroup className={"no-border input-lg" + (locationFocus ? " input-group-focus" : "")}>
