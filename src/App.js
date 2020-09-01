@@ -6,6 +6,7 @@ import LoginSignUp from './components/LoginSignUp'
 import LandingPage from './components/LandingPage'
 import MainContent from './containers/MainContent'
 import ProfilePage from './containers/ProfilePage'
+import EstablishmentMap from './containers/EstablishmentMap'
 
 class App extends React.Component {
 
@@ -17,9 +18,9 @@ class App extends React.Component {
     }
     if(localStorage.token){
       this.props.handlePersist()
-      if (this.props.history.location.pathname !== '/profile'){
-      this.props.history.push('/main')
-    }}
+    //   if (this.props.history.location.pathname !== '/profile'){
+    //   this.props.history.push('/main')
+    }
   }
 
   generateScriptTag = () => {
@@ -32,10 +33,10 @@ class App extends React.Component {
   }
 
   componentDidUpdate(prevProps){
-    if (prevProps.userInfo.token === "" && !!this.props.userInfo.token){
-      if (this.props.history.location.pathname !== '/profile'){
-        this.props.history.push('/main')
-      }}
+    // if (prevProps.userInfo.token === "" && !!this.props.userInfo.token){
+    //   if (this.props.history.location.pathname !== '/profile' ){
+    //     this.props.history.push('/main')
+    //   }}
   }
 
   requireAuthMain = () => {
@@ -59,6 +60,16 @@ class App extends React.Component {
     }
   }
 
+  requireAuthEstablishmentMap = () => {
+    if (localStorage.token){
+      return <EstablishmentMap 
+        user={this.props.userInfo.user} 
+        logout={this.handleLogout} />
+    } else {
+      this.props.history.push('/login')
+    }
+  }
+
   handleLogout = () => {
     localStorage.clear()
     this.props.history.push('/')
@@ -70,6 +81,7 @@ class App extends React.Component {
       <Switch>
         <Route path="/login" render={() => <LoginSignUp login={true} handleSubmit={this.props.handleLoginSignUp} history={this.props.history}/>}/>
         <Route path="/signup" render={() => <LoginSignUp login={false} handleSubmit={this.props.handleLoginSignUp}/>}/>
+        <Route path="/establishment-map" render={() => this.requireAuthEstablishmentMap()}/>
         <Route path="/profile" render={() => this.requireAuthProfile()}/>
         <Route path="/main" render={() => this.requireAuthMain()}/>
         <Route exact path="/" component={LandingPage} />

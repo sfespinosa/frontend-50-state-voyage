@@ -29,7 +29,7 @@ function NavBar(props){
                     </NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink href="#pablo" onClick={e => e.preventDefault()}>
+                    <NavLink href="/establishment-map">
                     View Establishment Map
                     </NavLink>
                 </NavItem>
