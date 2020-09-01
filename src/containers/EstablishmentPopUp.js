@@ -1,6 +1,7 @@
 import React from 'react'
 import { Modal, ModalBody, ModalFooter } from "reactstrap";
-import AddEditEstablishment from '../components/AddEditEstablishment';
+import AddEstablishment from '../components/AddEstablishment';
+import EditEstablishment from '../components/EditEstablishment';
 import SearchEstablishmentInput from '../components/SearchEstablishmentInput';
 import { connect } from 'react-redux'
 import { addToEstablishments } from '../actions/establishmentActions'
@@ -23,7 +24,7 @@ class EstablishmentPopUp extends React.Component {
             us_state_id: 0,
         },
         currentEstablishment: {},
-        collapseOpen: false
+        collapseOpen: false,
     }
 
     componentDidUpdate(prevProps){
@@ -50,8 +51,13 @@ class EstablishmentPopUp extends React.Component {
             this.setState({
                 ...this.state,
                 currentEstablishment: this.props.currentEstablishment
-        })
+            })
         }
+
+        if (prevProps.viewEstablishment !== this.props.viewEstablishment && this.props.viewEstablishment !== false) {
+            this.setState({
+                currentEstablishment: this.props.viewEstablishment.establishment
+        })}
     }
 
     handleOnChange = place => {
@@ -102,6 +108,23 @@ class EstablishmentPopUp extends React.Component {
         // console.log(e.target[2].checked) // confirms if map marker is needed
     }
 
+    handleCollectionEdit = e => {
+        e.preventDefault()
+        let formData = {
+            user_id: this.props.user.id,
+            establishment_id: this.state.currentEstablishment.id,
+            user_comments: e.target[0].value,
+            visited: e.target[1].checked
+        }
+        this.props.editEstablishmentCollection(formData, this.props.viewEstablishment.id)
+        this.props.toggleModal()
+    }
+
+    handleCollectionRemoval = () => {
+        this.props.viewEstablishment.remove(this.props.viewEstablishment.id)
+        this.props.toggleModal()
+    }
+
     render(){
         return(
             <Modal 
@@ -110,9 +133,13 @@ class EstablishmentPopUp extends React.Component {
                 toggle={this.props.toggleModal}
                 zIndex={201}
             >
-                <SearchEstablishmentInput currentState={this.props.currentState} handleOnChange={this.handleOnChange}/>
+                {!!this.props.viewEstablishment ? null : <SearchEstablishmentInput currentState={this.props.currentState} handleOnChange={this.handleOnChange}/>}
                 <ModalBody>
-                    <AddEditEstablishment {...this.state} handleCollectionSubmit={this.handleCollectionSubmit} handleEstablishmentSubmit={this.handleEstablishmentSubmit}/>
+                    {!!this.props.viewEstablishment 
+                    ? 
+                    <EditEstablishment {...this.state} handleCollectionEdit={this.handleCollectionEdit} viewEstablishment={this.props.viewEstablishment} handleCollectionRemoval={this.handleCollectionRemoval}/>
+                    : <AddEstablishment {...this.state} handleCollectionSubmit={this.handleCollectionSubmit} handleEstablishmentSubmit={this.handleEstablishmentSubmit}/>
+                    }
                 </ModalBody>
             </Modal>
     )}

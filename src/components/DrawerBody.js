@@ -2,11 +2,11 @@ import React from 'react'
 import { Button, CardColumns } from "reactstrap";
 import EstablishmentCard from './EstablishmentCard'
 
-export default function DrawerBody({toggleModal, establishmentCards, remove}){
+export default function DrawerBody({toggleModal, establishmentCards, remove, viewDetails}){
 
     const renderEstablishmentCards = () => {
         return establishmentCards.map(card => {
-            return <EstablishmentCard {...card} remove={remove}/>
+            return <EstablishmentCard {...card} key={card.id} remove={remove} viewDetails={viewDetails}/>
         })
     }
 

@@ -47,3 +47,24 @@ export function removeFromEstablishmentCollection(id){
         })
     }
 }
+export function editEstablishmentCollection(formData, id){
+    return (dispatch) => {
+        dispatch({type: 'LOADING_ESTABLISHMENT_COLLECTION'})
+        fetch(`http://localhost:3000/establishment_collections/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(res => res.json())
+        .then(json => {
+            if (!json.error) {
+                dispatch({type: 'UPDATED_ESTABLISHMENT_COLLECTION', establishmentCollection: json })
+            } else {
+                alert(json.error)
+            }
+        })
+    }
+}
