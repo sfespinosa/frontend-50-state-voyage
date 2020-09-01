@@ -10,6 +10,8 @@ import ProfilePage from './containers/ProfilePage'
 class App extends React.Component {
 
   componentDidMount(){
+    this.generateScriptTag()
+
     if(localStorage.token === 'undefined'){
       localStorage.clear()
     }
@@ -18,6 +20,15 @@ class App extends React.Component {
       if (this.props.history.location.pathname !== '/profile'){
       this.props.history.push('/main')
     }}
+  }
+
+  generateScriptTag = () => {
+    let script = document.createElement('script')
+    script.async = true
+    script.defer = true
+    script.type = "text/javascript"
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_API_KEY}&libraries=places`
+    document.head.appendChild(script)
   }
 
   componentDidUpdate(prevProps){

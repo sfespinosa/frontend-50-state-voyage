@@ -1,15 +1,16 @@
 import React from 'react'
 import { Collapse, Button, Form, FormGroup, Input, Label } from 'reactstrap'
 
-
-function AddEditEstablishment ({name, 
-    img_url, address, phone_number, price_level, 
-    rating, website_url, collapseOpen, handleSubmit}) {
+function AddEditEstablishment ({formData, collapseOpen, 
+    handleCollectionSubmit, handleEstablishmentSubmit}) {
     
     // hooks
     const [collectionCollapse, setCollectionCollapse] = React.useState(false)
     
     const handleEstablishmentConfirm = () => {
+        let input = document.getElementById('places-input')
+        input.disabled = true
+        handleEstablishmentSubmit()
         setCollectionCollapse(true)
     }
 
@@ -17,17 +18,17 @@ function AddEditEstablishment ({name,
         <div className='add-edit-establishment'>
             <Collapse isOpen={collapseOpen}>
                 <div className='establishment-display'>
-                    Name: {name}<br/>
-                    Address: {address}<br/>
-                    Phone Number: {phone_number}<br/>
-                    Price: {price_level}<br/>
-                    Rating: {rating}<br/>
-                    Website <a href={website_url} /><br/>
-                    {img_url ? <img src={img_url} alt='establishment-photo'/> : null }
+                    Name: {formData.name}<br/>
+                    Address: {formData.address}<br/>
+                    Phone Number: {formData.phone_number}<br/>
+                    Price: {formData.price_level ? formData.price_level : 'N/A'}<br/>
+                    Rating: {formData.rating}<br/>
+                    Website: {formData.website_url ? <a href={formData.website_url}>{formData.website_url}</a> : 'N/A'}<br/>
+                    {formData.img_url ? <img src={formData.img_url} alt='establishment'/> : 'null' }
                 </div>
                 <Button color='info' onClick={handleEstablishmentConfirm} disabled={collectionCollapse ? true : false}>Confirm</Button>
                 <Collapse isOpen={collectionCollapse} className='collection-form'>
-                    <Form onSubmit={handleSubmit}>
+                    <Form onSubmit={handleCollectionSubmit}>
                         <FormGroup>
                         <label htmlFor="user-comments">
                             Add Comments

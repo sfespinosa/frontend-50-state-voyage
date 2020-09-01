@@ -17,7 +17,7 @@ function NavBar(props){
         <Navbar className="bg-info" expand="lg">
             <Container>
             <NavbarBrand>
-            Hello, User!
+                Hello, {props.user}!
             </NavbarBrand>
                 <button className="navbar-toggler" id="navbarNav" type="button">
                     <span className="navbar-toggler-icon"></span>

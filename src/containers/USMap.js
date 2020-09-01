@@ -3,11 +3,13 @@ import '../assets/css/us-map.css';
 import USAMap from "react-usa-map";
 import { connect } from 'react-redux';
 import { fetchAllUsStates } from '../actions/usStateActions'
+import { fetchEstablishments } from '../actions/establishmentActions'
 
 class USMap extends Component {
 
     componentDidMount(){
         this.props.fetchAllUsStates()
+        this.props.fetchEstablishments()
         let dc = document.querySelector('circle.DC2')
         dc.remove()
     }
@@ -41,8 +43,8 @@ const mapStateToProps = state => {
     return { 
         usStates: state.usStatesInfo.usStates,
         stateCollection: state.stateCollectionInfo.stateCollection,
-        allStateCollections: state.stateCollectionInfo.allStateCollections
+        allStateCollections: state.stateCollectionInfo.allStateCollections,
     }
 }
 
-export default connect(mapStateToProps, {fetchAllUsStates})(USMap);
+export default connect(mapStateToProps, {fetchAllUsStates, fetchEstablishments})(USMap);
