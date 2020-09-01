@@ -4,6 +4,7 @@ import AddEditEstablishment from '../components/AddEditEstablishment';
 import SearchEstablishmentInput from '../components/SearchEstablishmentInput';
 import { connect } from 'react-redux'
 import { addToEstablishments } from '../actions/establishmentActions'
+import { addToEstablishmentCollection } from '../actions/establishmentCollectionActions'
 
 class EstablishmentPopUp extends React.Component {
     
@@ -44,6 +45,13 @@ class EstablishmentPopUp extends React.Component {
                 },
                 collapseOpen: false
         })}
+
+        if (prevProps.currentEstablishment !== this.props.currentEstablishment){
+            this.setState({
+                ...this.state,
+                currentEstablishment: this.props.currentEstablishment
+        })
+        }
     }
 
     handleOnChange = place => {
@@ -68,12 +76,10 @@ class EstablishmentPopUp extends React.Component {
 
     handleEstablishmentSubmit = () => {
         if (!!this.props.establishments.find(establishment => establishment.reference_id === this.state.formData.reference_id)) {
-            debugger
             this.setState({
                 ...this.state,
                 currentEstablishment: this.props.establishments.find(establishment => establishment.reference_id === this.state.formData.reference_id)
             })
-            debugger
         } else {
             this.props.addToEstablishments(this.state.formData)
             this.setState({
@@ -85,9 +91,15 @@ class EstablishmentPopUp extends React.Component {
 
     handleCollectionSubmit = e => {
         e.preventDefault()
-        console.log(e.target[0].value)
-        console.log(e.target[1].checked)
-        console.log(e.target[2].checked)
+        let formData = {
+            user_id: this.props.user.id,
+            establishment_id: this.state.currentEstablishment.id,
+            user_comments: e.target[0].value,
+            visited: e.target[1].checked
+        }
+        this.props.addToEstablishmentCollection(formData)
+        this.props.toggleModal()
+        // console.log(e.target[2].checked) // confirms if map marker is needed
     }
 
     render(){
@@ -107,10 +119,11 @@ class EstablishmentPopUp extends React.Component {
 }
 
 const mapStateToProps = state => {
-    return { 
+    return {
+        user: state.userInfo.user, 
         establishments: state.establishmentsInfo.establishments,
         currentEstablishment: state.establishmentsInfo.currentEstablishment
     }
 }
 
-export default connect(mapStateToProps, {addToEstablishments})(EstablishmentPopUp)
+export default connect(mapStateToProps, {addToEstablishments, addToEstablishmentCollection})(EstablishmentPopUp)

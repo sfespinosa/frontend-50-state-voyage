@@ -39,7 +39,7 @@ code {
   background: white !important; /* Green background with 30% opacity */
   color: black;
   text-align: center;
-  margin: 15px;
+  margin: 1.25rem;
 }
 
 .establishment-popup-header {
@@ -83,4 +83,22 @@ code {
 #autocomplete-menu {
   z-index: 2000 !important;
   position: 'absolute';
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: bold
+}
+
+.card-subtitle {
+  font-size: 14px
+}
+
+.card-text{
+  font-size: 12px;
+  margin-top: 10px
+}
+
+#add-establishment-btn {
+  margin-top: -10px
 }
