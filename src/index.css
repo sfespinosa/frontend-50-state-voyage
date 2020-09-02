@@ -112,3 +112,7 @@ code {
 .establishment-image {
   max-height: 700px
 }
+
+.popover-image {
+  height: 150px;
+}
