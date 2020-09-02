@@ -6,12 +6,31 @@ function AddEstablishment ({formData, collapseOpen,
     
     // hooks
     const [collectionCollapse, setCollectionCollapse] = React.useState(false)
-    
+    const [displayCategories, setDisplayCategories] = React.useState(false)
+
     const handleEstablishmentConfirm = () => {
         let input = document.getElementById('places-input')
         input.disabled = true
         handleEstablishmentSubmit()
         setCollectionCollapse(true)
+    }
+
+    const handleMapMarkerChange = e => {
+        setDisplayCategories(e.target.checked)
+    }
+
+    const renderCategoryDropDown = () => {
+        return(
+            <Input id="inputState" type="select" defaultValue='n/a'>
+                <option value='n/a' disabled>Choose a category...</option>
+                <option value='Favorite'>Favorite</option>
+                <option value='Food/Drink'>Food/Drink</option>
+                <option value='Shopping'>Shopping</option>
+                <option value='Party'>Party</option>
+                <option value='Want To Go'>Want To Go</option>
+                <option value='Other'>Other</option>
+            </Input>
+        )
     }
 
     return(
@@ -51,11 +70,12 @@ function AddEstablishment ({formData, collapseOpen,
                         </FormGroup>
                         <FormGroup check>
                             <Label check>
-                                <Input name='map-marker' type="checkbox"></Input>
+                                <Input name='map-marker' type="checkbox" onChange={handleMapMarkerChange}></Input>
                                 Create a Map Marker?
                                 <span className="form-check-sign">
                                     <span className="check"></span>
                                 </span>
+                            {displayCategories ? renderCategoryDropDown() : null}
                             </Label>
                         </FormGroup>
                         <Button color='info'>Add to Collection</Button>

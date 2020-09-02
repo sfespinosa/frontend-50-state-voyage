@@ -10,6 +10,7 @@ function EditEstablishment ({ handleCollectionEdit, viewEstablishment, handleCol
         visited: viewEstablishment.visited,
         map_marker: !!viewEstablishment.map_marker
     })
+    const [displayCategories, setDisplayCategories] = React.useState(!!viewEstablishment.map_marker)
 
     const handleOnChange = (e) => {
         setFormData({
@@ -18,15 +19,34 @@ function EditEstablishment ({ handleCollectionEdit, viewEstablishment, handleCol
         })
     }
 
+    const handleMapMarkerChange = e => {
+        setDisplayCategories(e.target.checked)
+    }
+
     const renderCollectionView = () => {
         return(
             <div className='collection-display'>
                 Comments: {viewEstablishment.user_comments}<br/>
                 Establishment visited before?: {viewEstablishment.visited ? 'Yes' : 'No'}<br/>
-                Map Marker Added?: {viewEstablishment.map_marker ? 'Yes' : 'No'}<br/>
+                Map Marker Added?: {viewEstablishment.map_marker ? `Yes`: 'No'}<br/>
+                {viewEstablishment.map_marker ? `Map Marker Category: ${viewEstablishment.map_marker.category}`: null}<br/>
                 <Button color='info' onClick={() => setEditCollection(true)}>Edit Your Notes</Button>
                 <Button color='primary' onClick={handleCollectionRemoval}>Remove from Collection</Button>
             </div>
+        )
+    }
+
+    const renderCategoryDropDown = () => {
+        return(
+            <Input id="inputState" type="select" defaultValue={viewEstablishment.map_marker ? viewEstablishment.map_marker.category : 'n/a'}>
+                <option value='n/a' disabled>Choose a category...</option>
+                <option value='Favorite'>Favorite</option>
+                <option value='Food/Drink'>Food/Drink</option>
+                <option value='Party'>Party</option>
+                <option value='Shopping'>Shopping</option>
+                <option value='Want To Go'>Want To Go</option>
+                <option value='Other'>Other</option>
+            </Input>
         )
     }
 
@@ -48,7 +68,7 @@ function EditEstablishment ({ handleCollectionEdit, viewEstablishment, handleCol
                         </FormGroup>
                         <FormGroup check>
                             <Label check>
-                                <Input name='visited' type="checkbox" defaultChecked={formData.visited} onChange={handleOnChange}></Input>
+                                <Input name='visited' type="checkbox" defaultChecked={formData.visited}></Input>
                                 Visited Establishment Before?
                                 <span className="form-check-sign">
                                     <span className="check"></span>
@@ -57,11 +77,12 @@ function EditEstablishment ({ handleCollectionEdit, viewEstablishment, handleCol
                         </FormGroup>
                         <FormGroup check>
                             <Label check>
-                                <Input name='map_marker' type="checkbox" defaultChecked={formData.map_marker} onChange={handleOnChange}></Input>
+                                <Input name='map_marker' type="checkbox" defaultChecked={formData.map_marker} onChange={handleMapMarkerChange}></Input>
                                 Create a Map Marker?
                                 <span className="form-check-sign">
                                     <span className="check"></span>
                                 </span>
+                            {displayCategories ? renderCategoryDropDown() : null}
                             </Label>
                         </FormGroup>
                         <Button color='info'>Save Changes</Button>
@@ -72,7 +93,6 @@ function EditEstablishment ({ handleCollectionEdit, viewEstablishment, handleCol
     return(
         <div className='add-edit-establishment'>
                 <div className='establishment-display'>
-                    Name: {viewEstablishment.establishment.name}<br/>
                     Address: {viewEstablishment.establishment.address}<br/>
                     Phone Number: {viewEstablishment.establishment.phone_number ? viewEstablishment.establishment.phone_number : 'N/A'}<br/>
                     Price: {viewEstablishment.establishment.price_level ? viewEstablishment.establishment.price_level : 'N/A'}<br/>

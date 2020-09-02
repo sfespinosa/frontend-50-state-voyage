@@ -27,7 +27,7 @@ class EstablishmentMap extends Component {
   render() {
     return (
       <>
-      <NavBar user={this.props.user.name} logout={this.props.logout}/>
+      <NavBar user={this.props.user.username} logout={this.props.logout}/>
         {/* // Important! Always set the container height explicitly */}
       <div style={{ height: '93vh', width: '100%' }}>
         <GoogleMapReact

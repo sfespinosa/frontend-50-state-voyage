@@ -35,6 +35,28 @@ export function addToMapMarkers(formData){
     }
 }
 
+export function editMapMarker(formData, id){
+    return (dispatch) => {
+        dispatch({type: 'LOADING_MAP_MARKERS'})
+        fetch(`http://localhost:3000/map_markers/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(res => res.json())
+        .then(json => {
+            if (!json.error) {
+                dispatch({type: 'UPDATED_MAP_MARKERS', mapMarkers: json})
+            } else {
+                alert(json.error)
+            }
+        })
+    }
+}
+
 export function deleteMapMarker(id){
     return (dispatch) => {
         dispatch({type: 'LOADING_MAP_MARKER'})

@@ -44,7 +44,7 @@ function ProfilePage(props) {
   return (
     <>
       <div className="wrapper">
-        <NavBar user={props.user.name} logout={props.logout}/>
+        <NavBar user={props.user.username} logout={props.logout}/>
         <ProfilePageHeader user={props.user} stateCollection={props.stateCollection}/>
         <div className="section">
           <Container>
