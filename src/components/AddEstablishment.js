@@ -20,11 +20,11 @@ function AddEstablishment ({formData, collapseOpen,
                 <div className='establishment-display'>
                     Name: {formData.name}<br/>
                     Address: {formData.address}<br/>
-                    Phone Number: {formData.phone_number}<br/>
+                    Phone Number: {formData.phone_number ? formData.phone_number : 'N/A'}<br/>
                     Price: {formData.price_level ? formData.price_level : 'N/A'}<br/>
                     Rating: {formData.rating}<br/>
                     Website: {formData.website_url ? <a href={formData.website_url}>{formData.website_url}</a> : 'N/A'}<br/>
-                    {formData.img_url ? <img src={formData.img_url} alt='establishment'/> : 'null' }
+                    {formData.img_url ? <img src={formData.img_url} alt='establishment' height="400"/> : 'null' }
                 </div>
                 <Button color='info' onClick={handleEstablishmentConfirm} disabled={collectionCollapse ? true : false}>Confirm</Button>
                 <Collapse isOpen={collectionCollapse} className='collection-form'>

@@ -16,7 +16,7 @@ class EstablishmentMap extends Component {
 
   renderMapMarkers = () => {
     return this.props.mapMarkers.map(marker => {
-      return <MapMarker key={marker.id} lat={marker.lat} lng={marker.lng}/>
+      return <MapMarker {...marker} key={marker.id} lat={marker.lat} lng={marker.lng}/>
     })
   }
 

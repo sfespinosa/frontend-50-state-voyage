@@ -24,7 +24,7 @@ function EditEstablishment ({ handleCollectionEdit, viewEstablishment, handleCol
                 Comments: {viewEstablishment.user_comments}<br/>
                 Establishment visited before?: {viewEstablishment.visited ? 'Yes' : 'No'}<br/>
                 Map Marker Added?: {viewEstablishment.map_marker ? 'Yes' : 'No'}<br/>
-                <Button color='info' onClick={() => setEditCollection(true)}>Edit Collection</Button>
+                <Button color='info' onClick={() => setEditCollection(true)}>Edit Your Notes</Button>
                 <Button color='primary' onClick={handleCollectionRemoval}>Remove from Collection</Button>
             </div>
         )
@@ -74,11 +74,11 @@ function EditEstablishment ({ handleCollectionEdit, viewEstablishment, handleCol
                 <div className='establishment-display'>
                     Name: {viewEstablishment.establishment.name}<br/>
                     Address: {viewEstablishment.establishment.address}<br/>
-                    Phone Number: {viewEstablishment.establishment.phone_number}<br/>
+                    Phone Number: {viewEstablishment.establishment.phone_number ? viewEstablishment.establishment.phone_number : 'N/A'}<br/>
                     Price: {viewEstablishment.establishment.price_level ? viewEstablishment.establishment.price_level : 'N/A'}<br/>
                     Rating: {viewEstablishment.establishment.rating}<br/>
                     Website: {viewEstablishment.establishment.website_url ? <a href={viewEstablishment.establishment.website_url}>{viewEstablishment.establishment.website_url}</a> : 'N/A'}<br/>
-                    {viewEstablishment.establishment.img_url ? <img src={viewEstablishment.establishment.img_url} alt='establishment'/> : 'null' }
+                    {viewEstablishment.establishment.img_url ? <img className='establishment-image' src={viewEstablishment.establishment.img_url} alt='establishment'/> : 'null' }
                 </div>
                 {editCollection ? renderCollectionEdit() : renderCollectionView()}
         </div>

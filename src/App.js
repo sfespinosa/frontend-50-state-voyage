@@ -91,8 +91,9 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {userInfo: state.userInfo,
-  stateCollection: state.stateCollectionInfo.stateCollection}
+  return {
+    userInfo: state.userInfo,
+    stateCollection: state.stateCollectionInfo.stateCollection}
 }
 
 export default connect(mapStateToProps, {handleLoginSignUp, handlePersist, editUserProfile, deleteUser})(withRouter(App));

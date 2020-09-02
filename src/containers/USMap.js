@@ -26,7 +26,7 @@ class USMap extends Component {
         let customStates = {}
         this.props.stateCollection.map(state => {
             customStates[state.abbrv] =  {
-                    fill: 'green'
+                    fill: '#2CA8FF'
                 }
         })
         return customStates
