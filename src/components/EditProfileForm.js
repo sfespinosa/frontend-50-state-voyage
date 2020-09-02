@@ -70,7 +70,7 @@ function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) 
             <Container>
                 <Col className="ml-auto mr-auto form-body" md="4">
                 <Card className="card-login card-plain">
-                <Form className="form" onSubmit={(e) => saveProfileChanges(e, 'users')}>
+                <Form className="form" onSubmit={(e) => saveProfileChanges(e)}>
             <CardBody>
                 <InputGroup className={"no-border input-lg" + (nameFocus ? " input-group-focus" : "")}>
                 <InputGroupAddon addonType="prepend">

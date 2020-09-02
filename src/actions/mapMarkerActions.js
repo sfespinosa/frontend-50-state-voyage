@@ -34,3 +34,19 @@ export function addToMapMarkers(formData){
         })
     }
 }
+
+export function deleteMapMarker(id){
+    return (dispatch) => {
+        dispatch({type: 'LOADING_MAP_MARKER'})
+        fetch(`http://localhost:3000/map_markers/${id}`, {
+            method: 'DELETE'
+        })
+        .then(json => {
+            if (!json.error) {
+                dispatch({ type: 'REMOVE_MAP_MARKER', id })
+            } else {
+                alert(json.error)
+            }
+        })
+    }
+}

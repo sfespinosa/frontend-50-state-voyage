@@ -6,7 +6,7 @@ import SearchEstablishmentInput from '../components/SearchEstablishmentInput';
 import { connect } from 'react-redux'
 import { addToEstablishments } from '../actions/establishmentActions'
 import { addToEstablishmentCollection } from '../actions/establishmentCollectionActions'
-import { addToMapMarkers } from '../actions/mapMarkerActions'
+import { addToMapMarkers, deleteMapMarker } from '../actions/mapMarkerActions'
 
 class EstablishmentPopUp extends React.Component {
     
@@ -62,6 +62,7 @@ class EstablishmentPopUp extends React.Component {
     }
 
     handleOnChange = place => {
+        console.log(place)
         this.setState({
             ...this.state,
             formData: {
@@ -73,7 +74,7 @@ class EstablishmentPopUp extends React.Component {
                 price_level: place.price_level,
                 rating: place.rating,
                 img_url: place.photos[0].getUrl(),
-                website_url: place.website_url,
+                website_url: place.website,
                 reference_id: place.reference,
                 us_state_id: this.props.currentState.id
                 },
@@ -126,6 +127,18 @@ class EstablishmentPopUp extends React.Component {
         }
         this.props.editEstablishmentCollection(formData, this.props.viewEstablishment.id)
         this.props.toggleModal()
+
+        if (!!this.props.viewEstablishment.map_marker !== e.target[2].checked) {
+            if (e.target[2].checked) {
+                let mapMarkerData = {
+                    user_id: this.props.user.id,
+                    establishment_id: this.state.currentEstablishment.id
+                }
+                this.props.addToMapMarkers(mapMarkerData)
+            } else {
+                this.props.deleteMapMarker(this.props.viewEstablishment.map_marker.id)
+            }
+        }
     }
 
     handleCollectionRemoval = () => {
@@ -161,4 +174,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {addToEstablishments, addToEstablishmentCollection, addToMapMarkers})(EstablishmentPopUp)
+export default connect(mapStateToProps, {addToEstablishments, addToEstablishmentCollection, addToMapMarkers, deleteMapMarker})(EstablishmentPopUp)
