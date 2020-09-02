@@ -115,4 +115,5 @@ code {
 
 .popover-image {
   height: 150px;
+  border: 1px solid #000000;
 }
