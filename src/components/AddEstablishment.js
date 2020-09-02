@@ -1,7 +1,7 @@
 import React from 'react'
 import { Collapse, Button, Form, FormGroup, Input, Label } from 'reactstrap'
 
-function AddEditEstablishment ({formData, collapseOpen, 
+function AddEstablishment ({formData, collapseOpen, 
     handleCollectionSubmit, handleEstablishmentSubmit}) {
     
     // hooks
@@ -66,4 +66,4 @@ function AddEditEstablishment ({formData, collapseOpen,
     )
 }
 
-export default AddEditEstablishment
+export default AddEstablishment

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import NavBar from './NavBar'
-
-const AnyReactComponent = ({ text }) => <div className="now-ui-icons location_pin">{text}</div>;
+import MapMarker from '../components/MapMarker';
+import { connect } from 'react-redux'
+import { fetchMapMarkers } from '../actions/mapMarkerActions'
 
 class EstablishmentMap extends Component {
   static defaultProps = {
@@ -13,6 +14,16 @@ class EstablishmentMap extends Component {
     zoom: 9
   };
 
+  renderMapMarkers = () => {
+    return this.props.mapMarkers.map(marker => {
+      return <MapMarker key={marker.id} lat={marker.lat} lng={marker.lng}/>
+    })
+  }
+
+  componentDidMount(){
+    this.props.fetchMapMarkers()
+  }
+
   render() {
     return (
       <>
@@ -20,15 +31,11 @@ class EstablishmentMap extends Component {
         {/* // Important! Always set the container height explicitly */}
       <div style={{ height: '93vh', width: '100%' }}>
         <GoogleMapReact
-          bootstrapURLKeys={{ key: 'AIzaSyAgk4i2qPPjiljKUCUbGSjTKu8AODC6Rcw'}}
+          bootstrapURLKeys={{ key: process.env.REACT_APP_API_KEY}}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
         >
-          <AnyReactComponent
-            lat={38.555605}
-            lng={-121.468926}
-            text="My Marker"
-          />
+          {this.renderMapMarkers()}
         </GoogleMapReact>
       </div>
       </>
@@ -36,4 +43,10 @@ class EstablishmentMap extends Component {
   }
 }
 
-export default EstablishmentMap;
+const mapStateToProps = state => {
+  return {
+    mapMarkers: state.mapMarkerInfo.mapMarkers
+  }
+}
+
+export default connect(mapStateToProps, { fetchMapMarkers })(EstablishmentMap);

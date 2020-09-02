@@ -6,6 +6,7 @@ import SearchEstablishmentInput from '../components/SearchEstablishmentInput';
 import { connect } from 'react-redux'
 import { addToEstablishments } from '../actions/establishmentActions'
 import { addToEstablishmentCollection } from '../actions/establishmentCollectionActions'
+import { addToMapMarkers } from '../actions/mapMarkerActions'
 
 class EstablishmentPopUp extends React.Component {
     
@@ -105,7 +106,14 @@ class EstablishmentPopUp extends React.Component {
         }
         this.props.addToEstablishmentCollection(formData)
         this.props.toggleModal()
-        // console.log(e.target[2].checked) // confirms if map marker is needed
+
+        if (e.target[2].checked) {
+            let mapMarkerData = {
+                user_id: this.props.user.id,
+                establishment_id: this.state.currentEstablishment.id
+            }
+            this.props.addToMapMarkers(mapMarkerData)
+        }
     }
 
     handleCollectionEdit = e => {
@@ -153,4 +161,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {addToEstablishments, addToEstablishmentCollection})(EstablishmentPopUp)
+export default connect(mapStateToProps, {addToEstablishments, addToEstablishmentCollection, addToMapMarkers})(EstablishmentPopUp)
