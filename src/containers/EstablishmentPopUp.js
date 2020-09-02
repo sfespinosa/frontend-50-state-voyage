@@ -1,12 +1,12 @@
 import React from 'react'
-import { Modal, ModalBody, ModalFooter } from "reactstrap";
+import { Modal, ModalBody, ModalFooter, Button } from "reactstrap";
 import AddEstablishment from '../components/AddEstablishment';
 import EditEstablishment from '../components/EditEstablishment';
 import SearchEstablishmentInput from '../components/SearchEstablishmentInput';
 import { connect } from 'react-redux'
 import { addToEstablishments } from '../actions/establishmentActions'
 import { addToEstablishmentCollection } from '../actions/establishmentCollectionActions'
-import { addToMapMarkers, deleteMapMarker } from '../actions/mapMarkerActions'
+import { addToMapMarkers, deleteMapMarker, editMapMarker } from '../actions/mapMarkerActions'
 
 class EstablishmentPopUp extends React.Component {
     
@@ -111,7 +111,8 @@ class EstablishmentPopUp extends React.Component {
         if (e.target[2].checked) {
             let mapMarkerData = {
                 user_id: this.props.user.id,
-                establishment_id: this.state.currentEstablishment.id
+                establishment_id: this.state.currentEstablishment.id,
+                category: e.target[3].value
             }
             this.props.addToMapMarkers(mapMarkerData)
         }
@@ -128,11 +129,23 @@ class EstablishmentPopUp extends React.Component {
         this.props.editEstablishmentCollection(formData, this.props.viewEstablishment.id)
         this.props.toggleModal()
 
+        if (!!this.props.viewEstablishment.map_marker === true && e.target[2].checked === true) {
+            if (this.props.viewEstablishment.map_marker.category !== e.target[3].value) {
+                let editedMapMarker = {
+                    user_id: this.props.user.id,
+                    establishment_id: this.state.currentEstablishment.id,
+                    category: e.target[3].value
+                }
+                this.props.editMapMarker(editedMapMarker, this.props.viewEstablishment.map_marker.id)
+            }
+        }
+
         if (!!this.props.viewEstablishment.map_marker !== e.target[2].checked) {
             if (e.target[2].checked) {
                 let mapMarkerData = {
                     user_id: this.props.user.id,
-                    establishment_id: this.state.currentEstablishment.id
+                    establishment_id: this.state.currentEstablishment.id,
+                    category: e.target[3].value
                 }
                 this.props.addToMapMarkers(mapMarkerData)
             } else {
@@ -154,14 +167,23 @@ class EstablishmentPopUp extends React.Component {
                 toggle={this.props.toggleModal}
                 zIndex={201}
             >
-                {!!this.props.viewEstablishment ? null : <SearchEstablishmentInput currentState={this.props.currentState} handleOnChange={this.handleOnChange}/>}
+                {!!this.props.viewEstablishment ? <div className='establishment-popup-header'><h2>{this.props.viewEstablishment.establishment.name}</h2></div> : <SearchEstablishmentInput currentState={this.props.currentState} handleOnChange={this.handleOnChange}/>}
                 <ModalBody>
                     {!!this.props.viewEstablishment 
                     ? 
                     <EditEstablishment {...this.state} handleCollectionEdit={this.handleCollectionEdit} viewEstablishment={this.props.viewEstablishment} handleCollectionRemoval={this.handleCollectionRemoval}/>
                     : <AddEstablishment {...this.state} handleCollectionSubmit={this.handleCollectionSubmit} handleEstablishmentSubmit={this.handleEstablishmentSubmit}/>
                     }
+                <hr></hr>
                 </ModalBody>
+                <ModalFooter>
+                <Button
+                    color="info"
+                    type="button"
+                    onClick={this.props.toggleModal}
+                >Close
+                </Button>
+                </ModalFooter>
             </Modal>
     )}
 }
@@ -174,4 +196,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {addToEstablishments, addToEstablishmentCollection, addToMapMarkers, deleteMapMarker})(EstablishmentPopUp)
+export default connect(mapStateToProps, {addToEstablishments, addToEstablishmentCollection, addToMapMarkers, deleteMapMarker, editMapMarker})(EstablishmentPopUp)

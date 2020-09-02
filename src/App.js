@@ -32,12 +32,6 @@ class App extends React.Component {
     document.head.appendChild(script)
   }
 
-  componentDidUpdate(prevProps){
-    // if (prevProps.userInfo.token === "" && !!this.props.userInfo.token){
-    //   if (this.props.history.location.pathname !== '/profile' ){
-    //     this.props.history.push('/main')
-    //   }}
-  }
 
   requireAuthMain = () => {
     if (localStorage.token){
