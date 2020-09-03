@@ -30,7 +30,7 @@ class MainContent extends React.Component {
     render(){
         return (
             <div className='main-content'>
-                <NavBar logout={this.props.logout} user={this.props.userInfo.user.username}/>
+                <NavBar logout={this.props.logout} user={this.props.userInfo.user}/>
                 {this.props.userInfo.user ? <StatesDrawer show={this.state.drawerOpen} usState={this.state.currentUsState} userId={this.props.userInfo.user.id} stateCollection={this.props.stateCollection}/> : null}
                 {this.state.drawerOpen ? <Backdrop toggleDrawer={this.toggleStatesDrawer}/> : null}
                 <USMap toggleDrawer={this.toggleStatesDrawer}/>                

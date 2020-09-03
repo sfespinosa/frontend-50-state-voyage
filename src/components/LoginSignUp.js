@@ -96,7 +96,6 @@ function LoginSignUp(props) {
             className="btn-round"
             color="info"
             size="lg"
-            href={!!localStorage.token ? '/main' : null}
           >
             Login
           </Button>
