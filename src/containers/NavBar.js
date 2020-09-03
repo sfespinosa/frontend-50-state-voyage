@@ -17,7 +17,7 @@ function NavBar(props){
         <Navbar className="bg-info" expand="lg">
             <Container>
             <NavbarBrand>
-                Hello, {props.user}!
+                Hello, {props.user.username}!
             </NavbarBrand>
                 <button className="navbar-toggler" id="navbarNav" type="button">
                     <span className="navbar-toggler-icon"></span>
@@ -36,7 +36,7 @@ function NavBar(props){
             </Nav>
             <Nav className="ml-auto" navbar>
                 <NavItem className='active'>
-                    <NavLink href='/profile'>
+                    <NavLink href={`/users/${props.user.id}`}>
                     <i className="now-ui-icons users_circle-08"></i>
                     <p>View Your Profile</p>
                     </NavLink>

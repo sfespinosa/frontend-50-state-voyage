@@ -1,7 +1,7 @@
 import React from 'react';
-import { Route, Switch, withRouter } from "react-router-dom";
+import { Route, Switch, withRouter, Redirect, Router } from "react-router-dom";
 import { connect } from 'react-redux'
-import { handleLoginSignUp, handlePersist, editUserProfile, deleteUser } from './actions/userActions'
+import { handleLoginSignUp, handlePersist, editUserProfile, deleteUser, fetchAllUsers } from './actions/userActions'
 import LoginSignUp from './components/LoginSignUp'
 import LandingPage from './components/LandingPage'
 import MainContent from './containers/MainContent'
@@ -12,26 +12,12 @@ class App extends React.Component {
 
   componentDidMount(){
     this.generateScriptTag()
+    this.props.fetchAllUsers()
 
-    if(localStorage.token === 'undefined'){
-      localStorage.clear()
-    }
-    if(localStorage.token){
-      this.userLoggedIn()
-  }}
-
-  componentDidUpdate(prevProps){
-    if (prevProps.userInfo.token !== this.props.userInfo.token)
-    this.userLoggedIn()
+    if(!!localStorage.token){
+      this.props.handlePersist()
   }
-
-  userLoggedIn = () => {
-    this.props.handlePersist()
-    if (this.props.history.location.pathname !== '/profile'){
-      if (this.props.history.location.pathname !== '/establishment-map')
-        this.props.history.push('/main')
-  }}
-  
+}
 
   generateScriptTag = () => {
     let script = document.createElement('script')
@@ -54,6 +40,7 @@ class App extends React.Component {
   requireAuthProfile = () => {
     if (localStorage.token){
       return <ProfilePage 
+        allUsers={this.props.userInfo.allUsers}
         user={this.props.userInfo.user} 
         editUserProfile={this.props.editUserProfile} 
         logout={this.handleLogout} 
@@ -83,12 +70,19 @@ class App extends React.Component {
     return (
     <div className='App'>
       <Switch>
-        <Route path="/login" render={() => <LoginSignUp login={true} handleSubmit={this.props.handleLoginSignUp} history={this.props.history}/>}/>
-        <Route path="/signup" render={() => <LoginSignUp login={false} handleSubmit={this.props.handleLoginSignUp}/>}/>
+        <Route path="/login">
+          {!!localStorage.token ? <Redirect to='/main' /> : <LoginSignUp login={true} handleSubmit={this.props.handleLoginSignUp}/>}
+        </Route>
+        <Route path="/signup">
+          {!!localStorage.token ? <Redirect to='/main' /> : <LoginSignUp login={false} handleSubmit={this.props.handleLoginSignUp}/>}
+        </Route>
         <Route path="/establishment-map" render={() => this.requireAuthEstablishmentMap()}/>
         <Route path="/profile" render={() => this.requireAuthProfile()}/>
+        <Route path="/users/:userId" component={() => this.requireAuthProfile()}/>
         <Route path="/main" render={() => this.requireAuthMain()}/>
-        <Route exact path="/" component={LandingPage} />
+        <Route exact path="/"> 
+          {!!localStorage.token ? <Redirect to='/main' /> : <LandingPage/>}
+        </Route>
       </Switch>
     </div>
     )}
@@ -97,7 +91,8 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
   return {
     userInfo: state.userInfo,
-    stateCollection: state.stateCollectionInfo.stateCollection}
+    stateCollection: state.stateCollectionInfo.stateCollection
+  }
 }
 
-export default connect(mapStateToProps, {handleLoginSignUp, handlePersist, editUserProfile, deleteUser})(withRouter(App));
+export default connect(mapStateToProps, {handleLoginSignUp, handlePersist, editUserProfile, deleteUser, fetchAllUsers})(withRouter(App));

@@ -1,4 +1,5 @@
 import React from "react";
+import { useParams } from 'react-router-dom'
 
 // reactstrap components
 import {
@@ -19,7 +20,9 @@ import ProfilePageHeader from "../components/ProfilePageHeader";
 import EditProfileForm from '../components/EditProfileForm'
 
 function ProfilePage(props) {
-
+  let {userId} = useParams()
+  let profileUser = props.allUsers.find(user => user.id.toString() === userId)
+  console.log(userId, props.user.id)
   //styling
   const [pills, setPills] = React.useState("2");
   React.useEffect(() => {
@@ -41,20 +44,33 @@ function ProfilePage(props) {
     setEditProfile(!editProfile)
   }
 
-  return (
-    <>
-      <div className="wrapper">
-        <NavBar user={props.user.username} logout={props.logout}/>
-        <ProfilePageHeader user={props.user} stateCollection={props.stateCollection}/>
-        <div className="section">
-          <Container>
+  const renderEditProfileButton = () => {
+    return (
+      <Container>
             <div className="button-container">
               <Button className="btn-round" color="info" size="lg" onClick={()=>handleEditProfileClick()}>
                 {editProfile ? 'Close' : 'Edit Profile'}
               </Button>
             </div>
-              {/* <EditProfileForm /> */}
               {editProfile ? <EditProfileForm user={props.user} close={handleEditProfileClick} editUserProfile={props.editUserProfile} deleteProfile={props.deleteUser} logout={props.logout}/> : null}
+      </Container>
+    )
+  }
+
+  const confirmCurrentUser = () => {
+    if (props.user.id) {
+      return userId === props.user.id.toString() 
+    }
+    return false
+  }
+
+  return (
+    <>
+      <div className="wrapper">
+        <NavBar user={props.user} logout={props.logout}/>
+        <ProfilePageHeader user={profileUser}/>
+        <div className="section">
+            {confirmCurrentUser() ? renderEditProfileButton() : null}
             {/* <h3 className="title">About me</h3>
             <h5 className="description">
               An artist of considerable range, Ryan — the name taken by
@@ -203,7 +219,7 @@ function ProfilePage(props) {
                 </TabPane>
               </TabContent>
             </Row> */}
-          </Container>
+          {/* </Container> */}
         </div>
       </div>
     </>
