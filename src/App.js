@@ -17,11 +17,21 @@ class App extends React.Component {
       localStorage.clear()
     }
     if(localStorage.token){
-      this.props.handlePersist()
-    //   if (this.props.history.location.pathname !== '/profile'){
-    //   this.props.history.push('/main')
-    }
+      this.userLoggedIn()
+  }}
+
+  componentDidUpdate(prevProps){
+    if (prevProps.userInfo.token !== this.props.userInfo.token)
+    this.userLoggedIn()
   }
+
+  userLoggedIn = () => {
+    this.props.handlePersist()
+    if (this.props.history.location.pathname !== '/profile'){
+      if (this.props.history.location.pathname !== '/establishment-map')
+        this.props.history.push('/main')
+  }}
+  
 
   generateScriptTag = () => {
     let script = document.createElement('script')
