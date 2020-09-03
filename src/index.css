@@ -117,3 +117,17 @@ code {
   height: 150px;
   border: 1px solid #000000;
 }
+
+.filter-map-menu {
+  background: white;
+  /* border: 1px solid #000000; */
+  border-radius: 17px;
+  position: absolute;
+  width: 300px;
+  /* height: 100px; */
+  z-index: 10;
+  margin: 10px;
+  padding: 5px;
+  box-shadow: 4px 4px 5px grey;
+  text-align: center;
+}
