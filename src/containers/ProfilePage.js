@@ -18,11 +18,12 @@ import {
 import NavBar from './NavBar'
 import ProfilePageHeader from "../components/ProfilePageHeader";
 import EditProfileForm from '../components/EditProfileForm'
+import ProfilePageBody from '../components/ProfilePageBody'
 
 function ProfilePage(props) {
   let {userId} = useParams()
   let profileUser = props.allUsers.find(user => user.id.toString() === userId)
-  console.log(userId, props.user.id)
+
   //styling
   const [pills, setPills] = React.useState("2");
   React.useEffect(() => {
@@ -64,6 +65,7 @@ function ProfilePage(props) {
     return false
   }
 
+  
   return (
     <>
       <div className="wrapper">
@@ -71,6 +73,7 @@ function ProfilePage(props) {
         <ProfilePageHeader user={profileUser}/>
         <div className="section">
             {confirmCurrentUser() ? renderEditProfileButton() : null}
+            <ProfilePageBody profileEstablishmentCollection={props.establishmentCollection.filter(ec => ec.user_id == profileUser.id)}/>
             {/* <h3 className="title">About me</h3>
             <h5 className="description">
               An artist of considerable range, Ryan — the name taken by

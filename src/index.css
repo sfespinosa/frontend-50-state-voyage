@@ -26,6 +26,7 @@ code {
   color: white;
   text-align: center;
   padding: 15px 0px 1px 0px;
+  border-bottom: 1px solid #000000;
 }
 
 .flag-img {
@@ -39,7 +40,7 @@ code {
   background: white !important; /* Green background with 30% opacity */
   color: black;
   text-align: center;
-  margin: 1.25rem;
+  margin: 1.25rem; 
 }
 
 .establishment-popup-header {
@@ -130,4 +131,15 @@ code {
   padding: 5px;
   box-shadow: 4px 4px 5px grey;
   text-align: center;
+}
+
+.profile-page-body {
+  background: white !important; /* Green background with 30% opacity */
+  color: black;
+  text-align: center;
+  margin: 1.25rem; 
+}
+
+.card {
+  border: 1px solid #000000;
 }

@@ -16,7 +16,7 @@ export default function EstablishmentCard(props){
             <CardBody>
                 <CardTitle>{props.establishment.name}</CardTitle>
                 <CardSubtitle>{props.establishment.address}</CardSubtitle>
-                <CardText><strong>Your Comments:</strong> "{props.user_comments}"</CardText>
+                <CardText><strong>Comments:</strong> "{props.user_comments}"</CardText>
                 <Button color='info' onClick={()=>props.viewDetails(props)}>View Details</Button>
                 <Button color='primary' onClick={()=>props.remove(props.id)}>Remove</Button>
             </CardBody>
