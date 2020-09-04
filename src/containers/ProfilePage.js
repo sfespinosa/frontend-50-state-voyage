@@ -30,7 +30,6 @@ function ProfilePage(props) {
     document.body.classList.add("profile-page");
     document.body.classList.add("sidebar-collapse");
     document.documentElement.classList.remove("nav-open");
-    window.scrollTo(0, 0);
     document.body.scrollTop = 0;
     return function cleanup() {
       document.body.classList.remove("profile-page");
@@ -58,6 +57,26 @@ function ProfilePage(props) {
     )
   }
 
+  const renderFollowUserButton = () => {
+    return (
+      <Container>
+            <div className="button-container">
+              <Button className="btn-round" color="info" size="lg" onClick={()=>handleFollowingUser()}>
+                Follow
+              </Button>
+            </div>
+      </Container>
+    )
+  }
+
+  const handleFollowingUser = () => {
+    let formData = {
+      followed_user_id: userId,
+      follower_id: props.user.id
+    }
+    props.createUserRelationship(formData)
+  }
+
   const confirmCurrentUser = () => {
     if (props.user.id) {
       return userId === props.user.id.toString() 
@@ -72,7 +91,7 @@ function ProfilePage(props) {
         <NavBar user={props.user} logout={props.logout}/>
         <ProfilePageHeader user={profileUser}/>
         <div className="section">
-            {confirmCurrentUser() ? renderEditProfileButton() : null}
+            {confirmCurrentUser() ? renderEditProfileButton() : renderFollowUserButton()}
             <ProfilePageBody profileEstablishmentCollection={props.establishmentCollection.filter(ec => ec.user_id == profileUser.id)}/>
             {/* <h3 className="title">About me</h3>
             <h5 className="description">
