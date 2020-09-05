@@ -75,7 +75,7 @@ class StatesDrawer extends React.Component {
         return(
             <div className={this.props.show ? 'side-drawer open' : 'side-drawer'}>
                 <DrawerHeader {...this.props.usState} handleSwitch={this.handleSwitch} show={this.props.show} allStateCollections={this.props.allStateCollections} visited={this.state.visited}/>
-                <DrawerBody viewDetails={this.viewDetails} toggleModal={this.toggleModal} establishmentCards={this.filteredEstablishmentCards()} remove={this.props.removeFromEstablishmentCollection}/>
+                <DrawerBody show={this.props.show} currentState={this.props.usState} viewDetails={this.viewDetails} toggleModal={this.toggleModal} establishmentCards={this.filteredEstablishmentCards()} remove={this.props.removeFromEstablishmentCollection}/>
                 <EstablishmentPopUp viewEstablishment={this.state.viewEstablishment} currentState={this.props.usState} modalOpen={this.state.modalOpen} toggleModal={this.toggleModal} editEstablishmentCollection={this.props.editEstablishmentCollection}/>
             </div>
         )}
