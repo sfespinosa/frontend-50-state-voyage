@@ -18,18 +18,18 @@ import {
 import NavBar from './NavBar'
 import ProfilePageHeader from "../components/ProfilePageHeader";
 import EditProfileForm from '../components/EditProfileForm'
+import ProfilePageBody from '../components/ProfilePageBody'
 
 function ProfilePage(props) {
   let {userId} = useParams()
   let profileUser = props.allUsers.find(user => user.id.toString() === userId)
-  console.log(userId, props.user.id)
+
   //styling
   const [pills, setPills] = React.useState("2");
   React.useEffect(() => {
     document.body.classList.add("profile-page");
     document.body.classList.add("sidebar-collapse");
     document.documentElement.classList.remove("nav-open");
-    window.scrollTo(0, 0);
     document.body.scrollTop = 0;
     return function cleanup() {
       document.body.classList.remove("profile-page");
@@ -57,20 +57,59 @@ function ProfilePage(props) {
     )
   }
 
+  const renderFollowUserButton = () => {
+    return (
+      <Container>
+            <div className="button-container">
+              <Button className="btn-round" color="info" size="lg" onClick={(e)=>handleFollowingUser(e)}>
+                {confirmUserFollowed() ? 'Unfollow' : 'Follow'}
+              </Button>
+            </div>
+      </Container>
+    )
+  }
+
+  const handleFollowingUser = (e) => {
+    if (e.target.innerText === 'Unfollow') {
+      props.user.active_relationships.map(user => {
+        if (user.followed_user_id.toString() === userId) {
+          props.deleteUserRelationship(user.id, userId)
+        }})
+    } else {
+    let formData = {
+      followed_user_id: userId,
+      follower_id: props.user.id
+    }
+    props.createUserRelationship(formData)
+  }
+  }
+
   const confirmCurrentUser = () => {
     if (props.user.id) {
       return userId === props.user.id.toString() 
     }
     return false
   }
-
+  
+  const confirmUserFollowed = () => {
+    let result = false
+    if (props.user.id) { 
+      props.user.followed_users.map(user => {
+        if (user.id.toString() === userId) {
+          result = true
+        }
+    })}
+    return result
+  }
+  
   return (
     <>
       <div className="wrapper">
         <NavBar user={props.user} logout={props.logout}/>
         <ProfilePageHeader user={profileUser}/>
         <div className="section">
-            {confirmCurrentUser() ? renderEditProfileButton() : null}
+            {confirmCurrentUser() ? renderEditProfileButton() : renderFollowUserButton()}
+            <ProfilePageBody profileEstablishmentCollection={props.establishmentCollection.filter(ec => ec.user_id == profileUser.id)}/>
             {/* <h3 className="title">About me</h3>
             <h5 className="description">
               An artist of considerable range, Ryan — the name taken by

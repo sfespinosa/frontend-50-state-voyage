@@ -43,7 +43,7 @@ class EstablishmentPopUp extends React.Component {
                     img_url: '',
                     website_url: '',
                     reference_id: '',
-                    us_state_id: this.props.currentState.id
+                    // us_state_id: this.props.currentState.id
                 },
                 collapseOpen: false
         })}
@@ -62,7 +62,6 @@ class EstablishmentPopUp extends React.Component {
     }
 
     handleOnChange = place => {
-        console.log(place)
         this.setState({
             ...this.state,
             formData: {
@@ -76,7 +75,7 @@ class EstablishmentPopUp extends React.Component {
                 img_url: place.photos[0].getUrl(),
                 website_url: place.website,
                 reference_id: place.reference,
-                us_state_id: this.props.currentState.id
+                // us_state_id: this.props.currentState.id
                 },
             collapseOpen: true
             })
@@ -89,7 +88,10 @@ class EstablishmentPopUp extends React.Component {
                 currentEstablishment: this.props.establishments.find(establishment => establishment.reference_id === this.state.formData.reference_id)
             })
         } else {
-            this.props.addToEstablishments(this.state.formData)
+            this.props.addToEstablishments({
+                ...this.state.formData,
+                us_state_id: this.props.currentState.id
+            })
             this.setState({
                 ...this.state,
                 currentEstablishment: this.props.currentEstablishment
