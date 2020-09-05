@@ -61,20 +61,27 @@ function ProfilePage(props) {
     return (
       <Container>
             <div className="button-container">
-              <Button className="btn-round" color="info" size="lg" onClick={()=>handleFollowingUser()}>
-                Follow
+              <Button className="btn-round" color="info" size="lg" onClick={(e)=>handleFollowingUser(e)}>
+                {confirmUserFollowed() ? 'Unfollow' : 'Follow'}
               </Button>
             </div>
       </Container>
     )
   }
 
-  const handleFollowingUser = () => {
+  const handleFollowingUser = (e) => {
+    if (e.target.innerText === 'Unfollow') {
+      props.user.active_relationships.map(user => {
+        if (user.followed_user_id.toString() === userId) {
+          props.deleteUserRelationship(user.id, userId)
+        }})
+    } else {
     let formData = {
       followed_user_id: userId,
       follower_id: props.user.id
     }
     props.createUserRelationship(formData)
+  }
   }
 
   const confirmCurrentUser = () => {
@@ -83,7 +90,17 @@ function ProfilePage(props) {
     }
     return false
   }
-
+  
+  const confirmUserFollowed = () => {
+    let result = false
+    if (props.user.id) { 
+      props.user.followed_users.map(user => {
+        if (user.id.toString() === userId) {
+          result = true
+        }
+    })}
+    return result
+  }
   
   return (
     <>

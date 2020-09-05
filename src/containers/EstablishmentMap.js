@@ -64,7 +64,6 @@ class EstablishmentMap extends Component {
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
           center={this.state.center}
-          className='google-map'
         >
           {this.renderMapMarkers()}
         </GoogleMapReact>

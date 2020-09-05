@@ -62,7 +62,6 @@ class EstablishmentPopUp extends React.Component {
     }
 
     handleOnChange = place => {
-        console.log(place)
         this.setState({
             ...this.state,
             formData: {

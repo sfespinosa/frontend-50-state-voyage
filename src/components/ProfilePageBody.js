@@ -9,7 +9,8 @@ class ProfilePageBody extends React.Component {
 
     state = {
         viewEstablishment: '',
-        modalOpen: false
+        modalOpen: false,
+        establishmentCards: this.props.profileEstablishmentCollection
     }
 
     toggleModal = () => {
@@ -27,7 +28,7 @@ class ProfilePageBody extends React.Component {
     }
 
     renderEstablishmentCards = () => {
-        return this.props.profileEstablishmentCollection.map(card => {
+        return this.state.establishmentCards.map(card => {
             return <EstablishmentCard {...card} key={card.id} remove={this.props.removeFromEstablishmentCollection} viewDetails={this.viewDetails}/>
         })
     }

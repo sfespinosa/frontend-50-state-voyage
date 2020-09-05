@@ -3,7 +3,7 @@ import { Route, Switch, withRouter, Redirect, Router } from "react-router-dom";
 import { connect } from 'react-redux'
 import { handleLoginSignUp, handlePersist, editUserProfile, deleteUser, fetchAllUsers } from './actions/userActions'
 import { fetchEstablishmentCollections } from './actions/establishmentCollectionActions'
-import { createUserRelationship } from './actions/userRelationshipActions'
+import { createUserRelationship, deleteUserRelationship } from './actions/userRelationshipActions'
 import LoginSignUp from './components/LoginSignUp'
 import LandingPage from './components/LandingPage'
 import MainContent from './containers/MainContent'
@@ -49,7 +49,8 @@ class App extends React.Component {
         logout={this.handleLogout} 
         deleteUser={this.props.deleteUser} 
         establishmentCollection={this.props.establishmentCollection}
-        createUserRelationship={this.props.createUserRelationship}/>
+        createUserRelationship={this.props.createUserRelationship}
+        deleteUserRelationship={this.props.deleteUserRelationship}/>
     } else {
       this.props.history.push('/login')
     }
@@ -93,11 +94,10 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     userInfo: state.userInfo,
     establishmentCollection: state.establishmentCollectionInfo.establishmentCollection
   }
 }
 
-export default connect(mapStateToProps, {handleLoginSignUp, handlePersist, editUserProfile, deleteUser, fetchAllUsers, fetchEstablishmentCollections, createUserRelationship})(withRouter(App));
+export default connect(mapStateToProps, {handleLoginSignUp, handlePersist, editUserProfile, deleteUser, fetchAllUsers, fetchEstablishmentCollections, createUserRelationship, deleteUserRelationship})(withRouter(App));
