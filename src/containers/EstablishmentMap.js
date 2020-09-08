@@ -42,7 +42,8 @@ class EstablishmentMap extends Component {
   }
 
   renderMapMarkers = () => {
-    return this.props.mapMarkers.map(marker => {
+    let userMarkers = this.props.mapMarkers.filter(marker => marker.user_id === this.props.user.id)
+    return userMarkers.map(marker => {
       return <MapMarker {...marker} key={marker.id} lat={marker.lat} lng={marker.lng} handleMarkerClick={this.handleMarkerClick}/>
     })
   }
