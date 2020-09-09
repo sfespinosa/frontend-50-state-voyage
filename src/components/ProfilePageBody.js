@@ -4,6 +4,7 @@ import EstablishmentCard from './EstablishmentCard'
 import { CardColumns } from 'reactstrap'
 import { connect } from 'react-redux'
 import { removeFromEstablishmentCollection, editEstablishmentCollection } from '../actions/establishmentCollectionActions'
+import RankingsTable from './RankingsTable';
 
 class ProfilePageBody extends React.Component {
 
@@ -36,6 +37,7 @@ class ProfilePageBody extends React.Component {
     render(){
         return(
             <div className='profile-page-body'>
+                {this.props.confirmCurrentUser ? <RankingsTable user={this.props.user}/> : null}
                 <CardColumns>
                 {this.renderEstablishmentCards()}
                 </CardColumns>
