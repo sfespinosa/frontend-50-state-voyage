@@ -1,10 +1,11 @@
 import React from 'react'
 import { Button, Form, FormGroup, Input, Label } from 'reactstrap'
 
-function EditEstablishment ({ handleCollectionEdit, viewEstablishment, handleCollectionRemoval, user }) {
+function EditEstablishment ({ handleCollectionSubmit, handleCollectionEdit, viewEstablishment, handleCollectionRemoval, user }) {
     
     // hooks
     const [editCollection, setEditCollection] = React.useState(false)
+    const [addToCollection, setAddToCollection] = React.useState(false)
     const [formData, setFormData] = React.useState({
         user_comments: viewEstablishment.user_comments,
         visited: viewEstablishment.visited,
@@ -45,7 +46,7 @@ function EditEstablishment ({ handleCollectionEdit, viewEstablishment, handleCol
             )
         } else {
             return (
-                <Button color='info'>Add to Your Collection</Button>
+                <Button color='info' onClick={() => setAddToCollection(true)}>Add to Your Collection</Button>
             )
         }
     }
@@ -104,6 +105,55 @@ function EditEstablishment ({ handleCollectionEdit, viewEstablishment, handleCol
         </Form>
     )}
 
+    const renderCollectionSubmit = () => {
+        return (
+            <Form onSubmit={handleCollectionSubmit}>
+                        <FormGroup>
+                        <label htmlFor="user-comments">
+                            Add Comments
+                        </label>
+                        <Input
+                            id="user-comments"
+                            rows="2"
+                            type="textarea"
+                            name='user_comments'
+                        ></Input>
+                        </FormGroup>
+                        <FormGroup check>
+                            <Label check>
+                                <Input name='visited' type="checkbox"></Input>
+                                Visited Establishment Before?
+                                <span className="form-check-sign">
+                                    <span className="check"></span>
+                                </span>
+                            </Label>
+                        </FormGroup>
+                        <FormGroup check>
+                            <Label check>
+                                <Input name='map-marker' type="checkbox" onChange={handleMapMarkerChange}></Input>
+                                Create a Map Marker?
+                                <span className="form-check-sign">
+                                    <span className="check"></span>
+                                </span>
+                            {displayCategories ? renderCategoryDropDown() : null}
+                            </Label>
+                        </FormGroup>
+                        <Button color='info'>Add to Collection</Button>
+                    </Form>
+    )}
+
+    const renderViews = () => {
+        if (viewEstablishment.user_id === user.id) {
+            return (
+                editCollection ? renderCollectionEdit() : renderCollectionView()
+            )
+        } else {
+            return (
+                addToCollection ? renderCollectionSubmit() : renderCollectionView()
+            )
+        }
+    }
+
     return(
         <div className='add-edit-establishment'>
                 <div className='establishment-display'>
@@ -114,7 +164,7 @@ function EditEstablishment ({ handleCollectionEdit, viewEstablishment, handleCol
                     Website: {viewEstablishment.establishment.website_url ? <a href={viewEstablishment.establishment.website_url}>{viewEstablishment.establishment.website_url}</a> : 'N/A'}<br/>
                     {viewEstablishment.establishment.img_url ? <img className='establishment-image' src={viewEstablishment.establishment.img_url} alt='establishment'/> : 'null' }
                 </div>
-                {editCollection ? renderCollectionEdit() : renderCollectionView()}
+                {renderViews()}
         </div>
     )
 }
