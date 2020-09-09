@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Form, FormGroup, Input, Label } from 'reactstrap'
 
-function EditEstablishment ({ handleCollectionEdit, viewEstablishment, handleCollectionRemoval }) {
+function EditEstablishment ({ handleCollectionEdit, viewEstablishment, handleCollectionRemoval, user }) {
     
     // hooks
     const [editCollection, setEditCollection] = React.useState(false)
@@ -30,10 +30,24 @@ function EditEstablishment ({ handleCollectionEdit, viewEstablishment, handleCol
                 Establishment visited before?: {viewEstablishment.visited ? 'Yes' : 'No'}<br/>
                 Map Marker Added?: {viewEstablishment.map_marker ? `Yes`: 'No'}<br/>
                 {viewEstablishment.map_marker ? `Map Marker Category: ${viewEstablishment.map_marker.category}`: null}<br/>
-                <Button color='info' onClick={() => setEditCollection(true)}>Edit Your Notes</Button>
-                <Button color='primary' onClick={handleCollectionRemoval}>Remove from Collection</Button>
+                {renderButtons()}
             </div>
         )
+    }
+
+    const renderButtons = () => {
+        if (viewEstablishment.user_id === user.id) {
+            return (
+                <div>
+                <Button color='info' onClick={() => setEditCollection(true)}>Edit Your Notes</Button>
+                <Button color='primary' onClick={handleCollectionRemoval}>Remove from Collection</Button>
+                </div>
+            )
+        } else {
+            return (
+                <Button color='info'>Add to Your Collection</Button>
+            )
+        }
     }
 
     const renderCategoryDropDown = () => {
