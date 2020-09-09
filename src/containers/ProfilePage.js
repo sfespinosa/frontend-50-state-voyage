@@ -109,7 +109,7 @@ function ProfilePage(props) {
         <ProfilePageHeader user={profileUser}/>
         <div className="section">
             {confirmCurrentUser() ? renderEditProfileButton() : renderFollowUserButton()}
-            <ProfilePageBody profileEstablishmentCollection={props.establishmentCollection.filter(ec => ec.user_id == profileUser.id)}/>
+            <ProfilePageBody confirmCurrentUser={confirmCurrentUser()} profileEstablishmentCollection={props.establishmentCollection.filter(ec => ec.user_id == profileUser.id)}/>
             {/* <h3 className="title">About me</h3>
             <h5 className="description">
               An artist of considerable range, Ryan — the name taken by
