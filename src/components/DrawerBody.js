@@ -4,7 +4,7 @@ import EstablishmentCard from './EstablishmentCard'
 import classnames from 'classnames';
 import FriendsFeed from './FriendsFeed';
 
-export default function DrawerBody({toggleModal, establishmentCards, remove, viewDetails, currentState, show}){
+export default function DrawerBody({toggleModal, establishmentCards, remove, viewDetails, currentState, show, user}){
 
     const [activeTab, setActiveTab] = React.useState('1');
 
@@ -18,7 +18,7 @@ export default function DrawerBody({toggleModal, establishmentCards, remove, vie
 
     const renderEstablishmentCards = () => {
         return establishmentCards.map(card => {
-            return <EstablishmentCard {...card} key={card.id} remove={remove} viewDetails={viewDetails}/>
+            return <EstablishmentCard {...card} key={card.id} remove={remove} viewDetails={viewDetails} user={user}/>
         })
     }
 
@@ -51,7 +51,7 @@ export default function DrawerBody({toggleModal, establishmentCards, remove, vie
             </TabPane>
         <TabPane tabId="2">
             <CardColumns>
-                <FriendsFeed currentState={currentState}/>
+                <FriendsFeed currentState={currentState} viewDetails={viewDetails}/>
             </CardColumns>
         </TabPane>
         </TabContent>

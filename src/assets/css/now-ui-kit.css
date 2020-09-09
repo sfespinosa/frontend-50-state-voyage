@@ -2112,7 +2112,7 @@ fieldset[disabled]
 .input-group-text:first-child,
 .input-group-btn:first-child > .dropdown-toggle,
 .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle) {
-  border-right: 0 none; }
+  border-right: 0 none;}
 
 .input-group .form-control:last-child,
 .input-group-text:last-child,

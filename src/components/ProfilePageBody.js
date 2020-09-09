@@ -29,7 +29,7 @@ class ProfilePageBody extends React.Component {
 
     renderEstablishmentCards = () => {
         return this.state.establishmentCards.map(card => {
-            return <EstablishmentCard {...card} key={card.id} remove={this.props.removeFromEstablishmentCollection} viewDetails={this.viewDetails}/>
+            return <EstablishmentCard {...card} key={card.id} remove={this.props.removeFromEstablishmentCollection} viewDetails={this.viewDetails} user={this.props.user}/>
         })
     }
 
@@ -45,4 +45,10 @@ class ProfilePageBody extends React.Component {
     }
 }
 
-export default connect(null, {removeFromEstablishmentCollection, editEstablishmentCollection})(ProfilePageBody)
+const mapStateToProps = state => {
+    return {
+        user: state.userInfo.user, 
+    }
+}
+
+export default connect(mapStateToProps, {removeFromEstablishmentCollection, editEstablishmentCollection})(ProfilePageBody)

@@ -9,7 +9,7 @@ class FriendsFeed extends React.Component{
         return this.props.user.friends_feed.map(card => {
             let establishment = this.props.allEstablishments.find( establishment => establishment.id === card.establishment_id)
                 if (establishment.us_state_id === this.props.currentState.id) {
-                return <EstablishmentCard {...card} establishment={establishment} key={establishment.id}/>
+                return <EstablishmentCard {...card} establishment={establishment} key={establishment.id} viewDetails={this.props.viewDetails} user={this.props.user}/>
             }})
         }
     }

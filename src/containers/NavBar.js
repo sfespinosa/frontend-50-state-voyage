@@ -6,7 +6,7 @@ import {
   NavItem,
   NavLink,
   Nav,
-  Container
+  Container,
 } from "reactstrap";
 
 // core components
@@ -35,10 +35,16 @@ function NavBar(props){
                 </NavItem>
             </Nav>
             <Nav className="ml-auto" navbar>
-                <NavItem className='active'>
+                <NavItem>
                     <NavLink href={`/users/${props.user.id}`}>
                     <i className="now-ui-icons users_circle-08"></i>
                     <p>View Your Profile</p>
+                    </NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink href='/findusers'>
+                    <i className="now-ui-icons users_circle-08"></i>
+                    <p>Find Other Users</p>
                     </NavLink>
                 </NavItem>
                 <NavItem>

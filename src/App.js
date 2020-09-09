@@ -9,6 +9,7 @@ import LandingPage from './components/LandingPage'
 import MainContent from './containers/MainContent'
 import ProfilePage from './containers/ProfilePage'
 import EstablishmentMap from './containers/EstablishmentMap'
+import UserSearch from './components/UserSearch';
 
 class App extends React.Component {
 
@@ -66,6 +67,16 @@ class App extends React.Component {
     }
   }
 
+  requireAuthFindUsers = () => {
+    if (localStorage.token){
+      return <UserSearch 
+        userInfo={this.props.userInfo} 
+        logout={this.handleLogout} />
+    } else {
+      this.props.history.push('/login')
+    }
+  }
+
   handleLogout = () => {
     localStorage.clear()
     this.props.history.push('/')
@@ -83,6 +94,7 @@ class App extends React.Component {
         </Route>
         <Route path="/establishment-map" render={() => this.requireAuthEstablishmentMap()}/>
         <Route path="/profile" render={() => this.requireAuthProfile()}/>
+        <Route path="/findusers" render={() => this.requireAuthFindUsers()}/>
         <Route path="/users/:userId" component={() => this.requireAuthProfile()}/>
         <Route path="/main" render={() => this.requireAuthMain()}/>
         <Route exact path="/"> 
