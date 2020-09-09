@@ -55,7 +55,7 @@ function LoginSignUp(props) {
       <Form className="form" onSubmit={(e) => handleSubmit(e, 'login')}>
         <CardHeader className="text-center">
           <div className="logo-container">
-            <img alt="..." src={require("../assets/img/now-logo.png")}></img>
+            <img alt="..." src={require("../assets/img/50-state-voyage-icon.png")}></img>
           </div>
         </CardHeader>
         <CardBody>
@@ -72,12 +72,13 @@ function LoginSignUp(props) {
               onBlur={() => setUsernameFocus(false)}
               onChange={handleFormChange}
               name='username'
+              autocomplete='off'
             />
             </InputGroup>
           <InputGroup className={"no-border input-lg" + (passwordFocus ? " input-group-focus" : "")}>
             <InputGroupAddon addonType="prepend">
               <InputGroupText>
-                <i className="now-ui-icons text_caps-small"></i>
+                <i className="now-ui-icons ui-1_lock-circle-open"></i>
               </InputGroupText>
             </InputGroupAddon>
             <Input
@@ -87,6 +88,7 @@ function LoginSignUp(props) {
               onBlur={() => setPasswordFocus(false)}
               onChange={handleFormChange}
               name='password'
+              autocomplete='off'
             />
           </InputGroup>
         </CardBody>
@@ -113,19 +115,28 @@ function LoginSignUp(props) {
       </Form>
     )}
 
+    const renderStateOptions = () => {
+      console.log(props.usStates)
+      return props.usStates.map(usState => {
+        return (
+          <option key={usState.id} value={usState.name}>{usState.abbrv}</option>
+        )
+      })
+    }
+
     const renderSignUpForm = () => {
       return (
         <Form className="form" onSubmit={(e) => handleSubmit(e, 'users')}>
           <CardHeader className="text-center">
             <div className="logo-container">
-              <img alt="..." src={require("../assets/img/now-logo.png")}></img>
+              <img alt="..." src={require("../assets/img/50-state-voyage-icon.png")}></img>
             </div>
           </CardHeader>
           <CardBody>
             <InputGroup className={"no-border input-lg" + (nameFocus ? " input-group-focus" : "")}>
               <InputGroupAddon addonType="prepend">
                 <InputGroupText>
-                  <i className="now-ui-icons text_caps-small"></i>
+                  <i className="now-ui-icons users_single-02"></i>
                 </InputGroupText>
               </InputGroupAddon>
               <Input
@@ -135,12 +146,13 @@ function LoginSignUp(props) {
                 onBlur={() => setNameFocus(false)}
                 onChange={handleFormChange}
                 name='name'
+                autocomplete='off'
               />
             </InputGroup>
             <InputGroup className={"no-border input-lg" + (birthdateFocus ? " input-group-focus" : "")}>
               <InputGroupAddon addonType="prepend">
                 <InputGroupText>
-                  <i className="now-ui-icons text_caps-small"></i>
+                  <i className="now-ui-icons ui-1_calendar-60"></i>
                 </InputGroupText>
               </InputGroupAddon>
               <Input
@@ -155,22 +167,25 @@ function LoginSignUp(props) {
             <InputGroup className={"no-border input-lg" + (locationFocus ? " input-group-focus" : "")}>
               <InputGroupAddon addonType="prepend">
                 <InputGroupText>
-                  <i className="now-ui-icons text_caps-small"></i>
+                  <i className="now-ui-icons location_compass-05"></i>
                 </InputGroupText>
               </InputGroupAddon>
               <Input
-                placeholder="Location"
-                type="text"
+                type="select"
                 onFocus={() => setLocationFocus(true)}
                 onBlur={() => setLocationFocus(false)}
                 onChange={handleFormChange}
                 name='location'
-              />
+                defaultValue='n/a'
+              >
+                <option value='n/a' disabled>Select a State</option>
+                {renderStateOptions()}
+              </Input>
             </InputGroup>
             <InputGroup className={"no-border input-lg" + (emailFocus ? " input-group-focus" : "")}>
               <InputGroupAddon addonType="prepend">
                 <InputGroupText>
-                  <i className="now-ui-icons text_caps-small"></i>
+                  <i className="now-ui-icons ui-1_email-85"></i>
                 </InputGroupText>
               </InputGroupAddon>
               <Input
@@ -180,6 +195,7 @@ function LoginSignUp(props) {
                 onBlur={() => setEmailFocus(false)}
                 onChange={handleFormChange}
                 name='email_address'
+                autocomplete='off'
               />
             </InputGroup>
             <InputGroup className={"no-border input-lg" + (usernameFocus ? " input-group-focus" : "")}>
@@ -195,12 +211,13 @@ function LoginSignUp(props) {
                 onBlur={() => setUsernameFocus(false)}
                 onChange={handleFormChange}
                 name='username'
+                autocomplete='off'
               />
               </InputGroup>
             <InputGroup className={"no-border input-lg" + (passwordFocus ? " input-group-focus" : "")}>
               <InputGroupAddon addonType="prepend">
                 <InputGroupText>
-                  <i className="now-ui-icons text_caps-small"></i>
+                  <i className="now-ui-icons ui-1_lock-circle-open"></i>
                 </InputGroupText>
               </InputGroupAddon>
               <Input
@@ -210,6 +227,7 @@ function LoginSignUp(props) {
                 onBlur={() => setPasswordFocus(false)}
                 onChange={handleFormChange}
                 name='password'
+                autocomplete='off'
               />
             </InputGroup>
           </CardBody>

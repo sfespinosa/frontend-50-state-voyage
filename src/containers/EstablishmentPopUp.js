@@ -43,7 +43,6 @@ class EstablishmentPopUp extends React.Component {
                     img_url: '',
                     website_url: '',
                     reference_id: '',
-                    // us_state_id: this.props.currentState.id
                 },
                 collapseOpen: false
         })}
@@ -62,23 +61,26 @@ class EstablishmentPopUp extends React.Component {
     }
 
     handleOnChange = place => {
-        this.setState({
-            ...this.state,
-            formData: {
-                name: place.name,
-                address: place.formatted_address,
-                phone_number: place.formatted_phone_number,
-                lat: place.geometry.location.lat(),
-                lng: place.geometry.location.lng(),
-                price_level: place.price_level,
-                rating: place.rating,
-                img_url: place.photos[0].getUrl(),
-                website_url: place.website,
-                reference_id: place.reference,
-                // us_state_id: this.props.currentState.id
-                },
-            collapseOpen: true
-            })
+        if (place.address_components.some(e => e.short_name === this.props.currentState.abbrv)) {
+            this.setState({
+                ...this.state,
+                formData: {
+                    name: place.name,
+                    address: place.formatted_address,
+                    phone_number: place.formatted_phone_number,
+                    lat: place.geometry.location.lat(),
+                    lng: place.geometry.location.lng(),
+                    price_level: place.price_level,
+                    rating: place.rating,
+                    img_url: place.photos[0].getUrl(),
+                    website_url: place.website,
+                    reference_id: place.reference,
+                    },
+                collapseOpen: true
+                })
+        } else {
+            alert(`Please choose an establishment in ${this.props.currentState.name}`)
+        }
     }
 
     handleEstablishmentSubmit = () => {

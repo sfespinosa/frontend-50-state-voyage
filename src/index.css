@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #696969;
+  background: #696969;
 }
 
 code {
@@ -22,6 +22,7 @@ code {
 }
 
 .drawer-header {
+  /* display: flex; */
   background: #2CA8FF; /* Green background with 30% opacity */
   color: white;
   text-align: center;

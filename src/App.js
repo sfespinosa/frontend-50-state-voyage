@@ -1,9 +1,10 @@
 import React from 'react';
-import { Route, Switch, withRouter, Redirect, Router } from "react-router-dom";
+import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import { connect } from 'react-redux'
 import { handleLoginSignUp, handlePersist, editUserProfile, deleteUser, fetchAllUsers } from './actions/userActions'
 import { fetchEstablishmentCollections } from './actions/establishmentCollectionActions'
 import { createUserRelationship, deleteUserRelationship } from './actions/userRelationshipActions'
+import { fetchAllUsStates } from './actions/usStateActions'
 import LoginSignUp from './components/LoginSignUp'
 import LandingPage from './components/LandingPage'
 import MainContent from './containers/MainContent'
@@ -17,6 +18,7 @@ class App extends React.Component {
     this.generateScriptTag()
     this.props.fetchAllUsers()
     this.props.fetchEstablishmentCollections()
+    this.props.fetchAllUsStates()
 
     if(!!localStorage.token){
       this.props.handlePersist()
@@ -90,7 +92,7 @@ class App extends React.Component {
           {!!localStorage.token ? <Redirect to='/main' /> : <LoginSignUp login={true} handleSubmit={this.props.handleLoginSignUp}/>}
         </Route>
         <Route path="/signup">
-          {!!localStorage.token ? <Redirect to='/main' /> : <LoginSignUp login={false} handleSubmit={this.props.handleLoginSignUp}/>}
+          {!!localStorage.token ? <Redirect to='/main' /> : <LoginSignUp login={false} handleSubmit={this.props.handleLoginSignUp} usStates={this.props.usStates}/>}
         </Route>
         <Route path="/establishment-map" render={() => this.requireAuthEstablishmentMap()}/>
         <Route path="/profile" render={() => this.requireAuthProfile()}/>
@@ -108,8 +110,9 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
   return {
     userInfo: state.userInfo,
-    establishmentCollection: state.establishmentCollectionInfo.establishmentCollection
+    establishmentCollection: state.establishmentCollectionInfo.establishmentCollection,
+    usStates: state.usStatesInfo.usStates
   }
 }
 
-export default connect(mapStateToProps, {handleLoginSignUp, handlePersist, editUserProfile, deleteUser, fetchAllUsers, fetchEstablishmentCollections, createUserRelationship, deleteUserRelationship})(withRouter(App));
+export default connect(mapStateToProps, {handleLoginSignUp, handlePersist, editUserProfile, deleteUser, fetchAllUsers, fetchEstablishmentCollections, createUserRelationship, deleteUserRelationship, fetchAllUsStates})(withRouter(App));

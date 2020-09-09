@@ -39,13 +39,13 @@ function ProfilePageHeader(props) {
       </div>
       <div className="social-description">
         <h2>{50-props.user.us_states.length}</h2>
-        <p>States Left</p>
+        <p>States to Visit</p>
       </div>
     </div>
       {/* <div className="content">
       <div className="social-description">
         <h2>48</h2>
-        <p>Followers</p>
+        <p>Following</p>
       </div>
       <div className="social-description">
         <h2>48</h2>
@@ -64,7 +64,7 @@ function ProfilePageHeader(props) {
         <div
           className="page-header-image"
           style={{
-            backgroundImage: "url(" + require("../assets/img/bg5.jpg") + ")",
+            backgroundImage: "url(" + require("../assets/img/bg3.jpg") + ")",
           }}
           ref={pageHeader}
         ></div>

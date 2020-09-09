@@ -24,7 +24,7 @@ class StatesDrawer extends React.Component {
             this.stateVisited()
         }
 
-        if(!!prevState.viewEstablishment && this.state.modalOpen === false) {
+        if(!!prevState.viewEstablishment && prevState.modalOpen === false) {
             this.setState({
                 viewEstablishment: false
             })

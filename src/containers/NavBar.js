@@ -17,12 +17,18 @@ function NavBar(props){
         <Navbar className="bg-info" expand="lg">
             <Container>
             <NavbarBrand>
-                Hello, {props.user.username}!
+            <img
+              alt="website-logo"
+              width='90'
+            //   height='35'
+              className="n-logo"
+              src={require("../assets/img/50-state-voyage-logo.png")}
+            ></img>
             </NavbarBrand>
                 <button className="navbar-toggler" id="navbarNav" type="button">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-            <Nav navbar>
+            <Nav navbar className="mr-auto">
                 <NavItem>
                     <NavLink href="/main">
                         Home <span className="sr-only">(current)</span>
@@ -43,7 +49,7 @@ function NavBar(props){
                 </NavItem>
                 <NavItem>
                     <NavLink href='/findusers'>
-                    <i className="now-ui-icons users_circle-08"></i>
+                    <i className="now-ui-icons ui-1_zoom-bold"></i>
                     <p>Find Other Users</p>
                     </NavLink>
                 </NavItem>

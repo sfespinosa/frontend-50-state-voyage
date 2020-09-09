@@ -27,21 +27,19 @@ function LandingPage() {
         <div
           className="page-header-image"
           style={{
-            backgroundImage: "url(" + require("../assets/img/header.jpg") + ")",
+            backgroundImage: "url(" + require("../assets/img/login.jpg") + ")",
           }}
           ref={pageHeader}
         ></div>
         <Container>
           <div className="content-center brand">
-            {/* <img
-              alt="..."
+            <img
+              alt="website-logo"
               className="n-logo"
-              src={require("../assets/img/now-logo.png")}
-            ></img> */}
-            <h1 className="h1-seo">50 State Voyage</h1>
-            <h3>Track states you've been to and establishments you'd like to visit!</h3>
+              src={require("../assets/img/50-state-voyage-logo.png")}
+            ></img>
+            <h3>Track where you've been and where you want to go!</h3>
             <Button
-                      block
                       className="btn-round"
                       color="info"
                       href="/login"
@@ -50,7 +48,6 @@ function LandingPage() {
                       Login
             </Button>
             <Button
-                      block
                       className="btn-round"
                       color="info"
                       href="/signup"
@@ -59,28 +56,6 @@ function LandingPage() {
                       Create Account
             </Button>
           </div>
-          {/* <h6 className="category category-absolute">
-            Designed by{" "}
-            <a href="http://invisionapp.com/?ref=creativetim" target="_blank">
-              <img
-                alt="..."
-                className="invision-logo"
-                src={require("assets/img/invision-white-slim.png")}
-              ></img>
-            </a>
-            . Coded by{" "}
-            <a
-              href="https://www.creative-tim.com?ref=nukr-index-header"
-              target="_blank"
-            >
-              <img
-                alt="..."
-                className="creative-tim-logo"
-                src={require("./assets/img/creative-tim-white-slim2.png")}
-              ></img>
-            </a>
-            .
-          </h6> */}
         </Container>
       </div>
     </>
