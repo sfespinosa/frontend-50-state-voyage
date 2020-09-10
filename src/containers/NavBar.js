@@ -14,7 +14,7 @@ import {
 function NavBar(props){
     return (
     <>
-        <Navbar className="bg-info fixed-top" expand="lg">
+        <Navbar className={'bg-info' + (props.true ? ' fixed-top' : '')} expand="lg">
             <Container>
             <NavbarBrand>
             <img

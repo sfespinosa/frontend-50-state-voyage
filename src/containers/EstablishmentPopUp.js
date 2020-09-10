@@ -178,16 +178,16 @@ class EstablishmentPopUp extends React.Component {
                     <EditEstablishment {...this.state} handleCollectionEdit={this.handleCollectionEdit} viewEstablishment={this.props.viewEstablishment} handleCollectionRemoval={this.handleCollectionRemoval} user={this.props.user} handleCollectionSubmit={this.handleCollectionSubmit}/>
                     : <AddEstablishment {...this.state} handleCollectionSubmit={this.handleCollectionSubmit} handleEstablishmentSubmit={this.handleEstablishmentSubmit}/>
                     }
-                <hr></hr>
+                {/* <hr></hr> */}
                 </ModalBody>
-                <ModalFooter>
+                {/* <ModalFooter>
                 <Button
                     color="info"
                     type="button"
                     onClick={this.props.toggleModal}
                 >Close
                 </Button>
-                </ModalFooter>
+                </ModalFooter> */}
             </Modal>
     )}
 }
