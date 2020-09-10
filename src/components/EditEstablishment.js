@@ -100,8 +100,7 @@ function EditEstablishment ({ handleCollectionSubmit, handleCollectionEdit, view
                             </Label>
                         </FormGroup>
                         <Button color='info'>Save Changes</Button>
-                        <Button color='danger' onClick={()=>setEditCollection(false)}>Cancel</Button>
-                        <Button color='primary' onClick={handleCollectionRemoval}>Remove from Collection</Button>
+                        <Button color='primary' onClick={()=>setEditCollection(false)}>Cancel</Button>
         </Form>
     )}
 
@@ -110,7 +109,7 @@ function EditEstablishment ({ handleCollectionSubmit, handleCollectionEdit, view
             <Form onSubmit={handleCollectionSubmit}>
                         <FormGroup>
                         <label htmlFor="user-comments">
-                            Add Comments
+                            <strong>Add Comments</strong>
                         </label>
                         <Input
                             id="user-comments"
@@ -139,6 +138,7 @@ function EditEstablishment ({ handleCollectionSubmit, handleCollectionEdit, view
                             </Label>
                         </FormGroup>
                         <Button color='info'>Add to Collection</Button>
+                        <Button color='primary' onClick={()=>setAddToCollection(false)}>Cancel</Button>
                     </Form>
     )}
 

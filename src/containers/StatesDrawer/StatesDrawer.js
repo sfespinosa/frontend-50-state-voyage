@@ -19,32 +19,31 @@ class StatesDrawer extends React.Component {
         this.props.fetchAllStateCollections()
     }
 
-    componentDidUpdate(prevProps, prevState){
+    componentDidUpdate(prevProps){
         if(prevProps.usState !== this.props.usState && this.props.usState !== {}){
             this.stateVisited()
-        }
-
-        if(!!prevState.viewEstablishment && prevState.modalOpen === false) {
-            this.setState({
-                viewEstablishment: false
-            })
         }
     }
 
     stateVisited = () => {
-        this.setState({
+        this.setState({...this.state,
             visited: !!this.props.allStateCollections.find(collection => collection.user_id === this.props.userId && collection.us_state.id === this.props.usState.id)
         })
     }
 
     toggleModal = () => {
-        this.setState({
-            modalOpen: !this.state.modalOpen,
-        })
+        if (this.state.modalOpen) {
+            this.setState({...this.state,
+                modalOpen: !this.state.modalOpen
+        })} else {
+            this.setState({...this.state,
+                modalOpen: !this.state.modalOpen,
+                viewEstablishment: false})
+        }
     }
 
     handleSwitch = (state, usId) => {
-        this.setState({
+        this.setState({...this.state,
             visited: !this.state.visited
         })
         if (state) {

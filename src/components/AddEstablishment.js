@@ -1,5 +1,5 @@
 import React from 'react'
-import { Collapse, Button, Form, FormGroup, Input, Label } from 'reactstrap'
+import { Collapse, Button, Form, FormGroup, Input, Label, Row, Col } from 'reactstrap'
 
 function AddEstablishment ({formData, collapseOpen, 
     handleCollectionSubmit, handleEstablishmentSubmit}) {
@@ -37,20 +37,26 @@ function AddEstablishment ({formData, collapseOpen,
         <div className='add-edit-establishment'>
             <Collapse isOpen={collapseOpen}>
                 <div className='establishment-display'>
-                    Name: {formData.name}<br/>
-                    Address: {formData.address}<br/>
-                    Phone Number: {formData.phone_number ? formData.phone_number : 'N/A'}<br/>
-                    Price: {formData.price_level ? formData.price_level : 'N/A'}<br/>
-                    Rating: {formData.rating}<br/>
-                    Website: {formData.website_url ? <a href={formData.website_url}>{formData.website_url}</a> : 'N/A'}<br/>
-                    {formData.img_url ? <img src={formData.img_url} alt='establishment' height="400"/> : 'null' }
-                </div>
+                    {formData.img_url ? <img className='establishment-image' src={formData.img_url} alt='establishment'/> : 'null' }
+                    <Row>
+                    <Col><strong>Name: </strong><br/>{formData.name}<br/></Col>
+                    <Col><strong>Address: </strong><br/>{formData.address}<br/></Col>
+                    </Row>
+                    <Row>
+                    <Col><strong>Phone Number: </strong><br/>{formData.phone_number ? formData.phone_number : 'N/A'}<br/></Col>
+                    <Col><strong>Price: </strong><br/>{formData.price_level ? formData.price_level : 'N/A'}<br/></Col>
+                    </Row>
+                    <Row>
+                    <Col><strong>Rating: </strong><br/>{formData.rating}<br/></Col>
+                    <Col><strong>Website: </strong><br/>{formData.website_url ? <a href={formData.website_url}>{formData.name}</a> : 'N/A'}<br/></Col>
+                    </Row>
                 <Button color='info' onClick={handleEstablishmentConfirm} disabled={collectionCollapse ? true : false}>Confirm</Button>
+                
                 <Collapse isOpen={collectionCollapse} className='collection-form'>
                     <Form onSubmit={handleCollectionSubmit}>
                         <FormGroup>
                         <label htmlFor="user-comments">
-                            Add Comments
+                            <strong>Add Comments</strong>
                         </label>
                         <Input
                             id="user-comments"
@@ -62,7 +68,7 @@ function AddEstablishment ({formData, collapseOpen,
                         <FormGroup check>
                             <Label check>
                                 <Input name='visited' type="checkbox"></Input>
-                                Visited Establishment Before?
+                                Visited Before?
                                 <span className="form-check-sign">
                                     <span className="check"></span>
                                 </span>
@@ -81,6 +87,7 @@ function AddEstablishment ({formData, collapseOpen,
                         <Button color='info'>Add to Collection</Button>
                     </Form>
                 </Collapse>
+                </div>
             </Collapse>
         </div>
     )
