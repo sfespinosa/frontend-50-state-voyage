@@ -17,7 +17,6 @@ class FriendsFeed extends React.Component{
     render(){
         return(
             <div className='friends-feed'>
-
                 {this.renderFriendsFeedCards()}
             </div>
         )

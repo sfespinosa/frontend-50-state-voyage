@@ -145,3 +145,15 @@ code {
 .card {
   border: 1px solid #000000;
 }
+
+.user-search-results {
+  display: flex;
+  align-content: center;
+  margin-left: 25px;
+  margin-right: 25px;
+
+}
+
+.user-card {
+  margin-right: 25px
+}

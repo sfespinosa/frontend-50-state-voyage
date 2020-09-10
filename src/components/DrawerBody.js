@@ -1,5 +1,5 @@
 import React from 'react'
-import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col, CardColumns } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Button, CardColumns } from 'reactstrap';
 import EstablishmentCard from './EstablishmentCard'
 import classnames from 'classnames';
 import FriendsFeed from './FriendsFeed';

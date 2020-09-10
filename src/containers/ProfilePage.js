@@ -4,14 +4,7 @@ import { useParams } from 'react-router-dom'
 // reactstrap components
 import {
   Button,
-  NavItem,
-  NavLink,
-  Nav,
-  TabContent,
-  TabPane,
   Container,
-  Row,
-  Col,
 } from "reactstrap";
 
 // core components
@@ -25,7 +18,6 @@ function ProfilePage(props) {
   let profileUser = props.allUsers.find(user => user.id.toString() === userId)
 
   //styling
-  const [pills, setPills] = React.useState("2");
   React.useEffect(() => {
     document.body.classList.add("profile-page");
     document.body.classList.add("sidebar-collapse");
@@ -71,8 +63,8 @@ function ProfilePage(props) {
 
   const handleFollowingUser = (e) => {
     if (e.target.innerText === 'Unfollow') {
-      props.user.active_relationships.map(user => {
-        if (user.followed_user_id.toString() === userId) {
+      props.user.active_relationships.map((user) => {
+          if (user.followed_user_id.toString() === userId) {
           props.deleteUserRelationship(user.id, userId)
         }})
     } else {
@@ -80,7 +72,7 @@ function ProfilePage(props) {
       followed_user_id: userId,
       follower_id: props.user.id
     }
-    props.createUserRelationship(formData)
+    return props.createUserRelationship(formData)
   }
   }
 
@@ -109,7 +101,7 @@ function ProfilePage(props) {
         <ProfilePageHeader user={profileUser}/>
         <div className="section">
             {confirmCurrentUser() ? renderEditProfileButton() : renderFollowUserButton()}
-            <ProfilePageBody confirmCurrentUser={confirmCurrentUser()} profileEstablishmentCollection={props.establishmentCollection.filter(ec => ec.user_id == profileUser.id)}/>
+            <ProfilePageBody confirmCurrentUser={confirmCurrentUser()} profileEstablishmentCollection={props.establishmentCollection.filter(ec => ec.user_id.toString() === profileUser.id.toString())}/>
         </div>
       </div>
     </>

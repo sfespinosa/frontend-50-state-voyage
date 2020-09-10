@@ -6,12 +6,12 @@ import { fetchEstablishmentCollections } from './actions/establishmentCollection
 import { createUserRelationship, deleteUserRelationship } from './actions/userRelationshipActions'
 import { fetchAllUsStates } from './actions/usStateActions'
 import LoginSignUp from './components/LoginSignUp'
-import LandingPage from './components/LandingPage'
+import LandingPage from './containers/LandingPage'
 import MainContent from './containers/MainContent'
 import ProfilePage from './containers/ProfilePage'
 import EstablishmentMap from './containers/EstablishmentMap'
-import UserSearch from './components/UserSearch';
-import NotFoundPage from './components/NotFoundPage';
+import UserSearch from './containers/UserSearch';
+import NotFoundPage from './containers/NotFoundPage';
 
 class App extends React.Component {
 

@@ -1861,17 +1861,20 @@ fieldset[disabled]
   color: #0077B5 !important; }
 
 .form-control::-moz-placeholder {
-  color: #888888;
+  /* color: #888888; */
+  color: #ebebeb;
   opacity: 0.8;
   filter: alpha(opacity=80); }
 
 .form-control:-moz-placeholder {
-  color: #888888;
+  /* color: #888888; */
+  color: #ebebeb;
   opacity: 0.8;
   filter: alpha(opacity=80); }
 
 .form-control::-webkit-input-placeholder {
-  color: #888888;
+  /* color: #888888; */
+  color: #ebebeb;
   opacity: 0.8;
   filter: alpha(opacity=80); }
 
