@@ -6,8 +6,11 @@ import { connect } from 'react-redux'
 import { fetchMapMarkers } from '../actions/mapMarkerActions'
 import FilterMapMenu from '../components/FilterMapMenu';
 import { fetchAllUsStates } from '../actions/usStateActions'
+import { Fade } from 'reactstrap'
 
 class EstablishmentMap extends Component {
+
+  
   static defaultProps = {
     center: {
       lat: 38.555605,
@@ -16,15 +19,30 @@ class EstablishmentMap extends Component {
     zoom: 9
   };
 
-  state = {
+  state = {fadeIn: false,
     center: {
-      lat: 38.555605,
-      lng: -121.468926
-    },
+    lat: 38.555605,
+    lng: -121.468926
+  }}
+
+  componentWillMount(){
+    this.setState({...this.state, fadeIn: true})
+  }
+  
+  componentDidUpdate(prevProps){
+    if (prevProps.user !== this.props.user){
+      let usState = this.props.usStates.find(state => state.name === this.props.user.location)
+      this.setState({...this.state,
+        center: {
+          lat: usState.capital_lat,
+          lng: usState.capital_lng
+        }
+      })
+    }
   }
 
   handleMarkerClick = (lat, lng) => {
-    this.setState({
+    this.setState({...this.state,
       center: {
         lat, lng
       }
@@ -33,7 +51,7 @@ class EstablishmentMap extends Component {
 
   handleStateFilterChange = e => {
     let state = this.props.usStates.find(state => state.id.toString() === e.target.value)
-    this.setState({
+    this.setState({...this.state,
       center: {
         lat: state.capital_lat,
         lng: state.capital_lng
@@ -55,7 +73,7 @@ class EstablishmentMap extends Component {
 
   render() {
     return (
-      <>
+      <Fade in={this.state.fadeIn}>
       <NavBar user={this.props.user} logout={this.props.logout}/>
         {/* // Important! Always set the container height explicitly */}
       <div style={{ height: '93vh', width: '100%' }}>
@@ -69,7 +87,7 @@ class EstablishmentMap extends Component {
           {this.renderMapMarkers()}
         </GoogleMapReact>
       </div>
-      </>
+      </Fade>
     );
   }
 }

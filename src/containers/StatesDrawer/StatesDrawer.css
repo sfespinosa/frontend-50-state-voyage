@@ -10,7 +10,6 @@ body {
 
 .side-drawer { 
     height: 100%;
-    /* background: #2CA8FF;     */
     background: white; 
     position: fixed;
     top: 0;
@@ -20,7 +19,8 @@ body {
     box-shadow: 1px 0px 7px rgba(0,0,0,0.5); 
     transform: translateX(100%);
     transition: transform 0.4s ease-out;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     border: 1px solid #000000;
 }
 

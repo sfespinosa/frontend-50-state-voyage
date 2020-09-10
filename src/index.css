@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #696969;
+  background: #696969;
 }
 
 code {
@@ -18,22 +18,31 @@ code {
 }
 
 .edit-profile-form {
-  background: #696969
+  margin-left: 20px;
+  margin-right: 20px;
+  background: #696969;
+  position: relative;
+  border-radius: 4px;
 }
 
 .drawer-header {
+  /* display: flex; */
   background: #2CA8FF; /* Green background with 30% opacity */
   color: white;
   text-align: center;
   padding: 15px 0px 1px 0px;
   border-bottom: 1px solid #000000;
+  padding-bottom: 15px;
+  padding-right: 10px;
 }
 
 .flag-img {
   max-height: 250px;
+  max-width: 375px;
   box-shadow: 10px;
   border-style: outset;
   border-color: white;
+  vertical-align: baseline;
 }
 
 .drawer-body {
@@ -52,6 +61,14 @@ code {
   padding: 15px 0px 10px 0px;
   z-index: 2000;
   position: 'absolute';
+}
+
+.establishment-display {
+  text-align: center;
+}
+
+.collection-display {
+  text-align: center;
 }
 
 .places-input-container {
@@ -76,6 +93,7 @@ code {
 }
 
 #user-comments {
+  text-align: center;
   border: 1px solid #E3E3E3;
   border-radius: 4px;
   color: black
@@ -108,15 +126,18 @@ code {
 .material-icons.md-24 { font-size: 24px; }
 .material-icons.md-36 { font-size: 36px; }
 .material-icons.md-48 { font-size: 48px; }
-.material-icons.info600 { color: #2CA8FF; }
+.material-icons.info600 { 
+  color: #f96332}
 
 .establishment-image {
-  max-height: 700px
+  max-height: 700px;
+  border: 1px solid #000000;
 }
 
 .popover-image {
   height: 150px;
   border: 1px solid #000000;
+  border-radius: 4px;
 }
 
 .filter-map-menu {
@@ -139,8 +160,34 @@ code {
   text-align: center;
   margin: 1.25rem; 
   overflow: scroll;
+  margin-top: -95px;
+  position: relative;
 }
 
 .card {
   border: 1px solid #000000;
+}
+
+.user-search-results {
+  display: flex;
+  align-content: center;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.user-card {
+  margin-right: 25px
+}
+
+.profile-page-banner {
+  border: 2px solid #696969;
+  border-radius: 4px;
+}
+
+.profile-page-cards {
+  margin-top: 70px;
+}
+
+.rankings-table {
+  position: relative;
 }

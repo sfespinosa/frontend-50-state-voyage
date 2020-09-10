@@ -1861,17 +1861,20 @@ fieldset[disabled]
   color: #0077B5 !important; }
 
 .form-control::-moz-placeholder {
-  color: #888888;
+  /* color: #888888; */
+  color: #ebebeb;
   opacity: 0.8;
   filter: alpha(opacity=80); }
 
 .form-control:-moz-placeholder {
-  color: #888888;
+  /* color: #888888; */
+  color: #ebebeb;
   opacity: 0.8;
   filter: alpha(opacity=80); }
 
 .form-control::-webkit-input-placeholder {
-  color: #888888;
+  /* color: #888888; */
+  color: #ebebeb;
   opacity: 0.8;
   filter: alpha(opacity=80); }
 
@@ -2498,7 +2501,7 @@ optgroup,
 select,
 textarea {
   font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif; }
-
+ 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 400; }
 
@@ -3212,7 +3215,7 @@ Created using IcoMoon - icomoon.io
     .nav-tabs > .nav-item > .nav-link:hover {
       background-color: transparent; }
     .nav-tabs > .nav-item > .nav-link.active {
-      background-color: #444;
+      background-color: #2CA8FF;
       border-radius: 30px;
       color: #FFFFFF; }
     .nav-tabs > .nav-item > .nav-link i.now-ui-icons {
@@ -4127,7 +4130,8 @@ img {
   .login-page .card-login .logo-container {
     width: 65px;
     margin: 0 auto;
-    margin-bottom: 55px; }
+    margin-bottom: 25px; 
+  }
     .login-page .card-login .logo-container img {
       width: 100%; }
   .login-page .card-login .input-group:last-child {

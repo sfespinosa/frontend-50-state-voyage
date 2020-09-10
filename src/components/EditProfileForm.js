@@ -11,11 +11,25 @@ import {
     InputGroupAddon,
     InputGroupText,
     InputGroup,
-    Container,
     Col,
 } from "reactstrap";
 
 function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) {
+    const usStates = [
+        'Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida',
+        'Georgia', 'Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine',
+        'Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska',
+        'Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota'
+        ,'Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota',
+        'Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming']
+
+    const renderStateOptions = () => {
+        return usStates.map((usState, idx) => {
+            return (
+            <option key={idx} value={usState}>{usState}</option>
+            )
+        })
+    }
 
     // form styling
     const [nameFocus, setNameFocus] = React.useState(false);
@@ -67,15 +81,14 @@ function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) 
         <div className='edit-profile-form'>
             <div>
             <div>
-            <Container>
-                <Col className="ml-auto mr-auto form-body" md="4">
+                <Col className="ml-auto mr-auto form-body" md="3">
                 <Card className="card-login card-plain">
                 <Form className="form" onSubmit={(e) => saveProfileChanges(e)}>
             <CardBody>
                 <InputGroup className={"no-border input-lg" + (nameFocus ? " input-group-focus" : "")}>
                 <InputGroupAddon addonType="prepend">
                     <InputGroupText>
-                    <i className="now-ui-icons text_caps-small"></i>
+                    <i className="now-ui-icons users_single-02"></i>
                     </InputGroupText>
                 </InputGroupAddon>
                 <Input
@@ -86,12 +99,13 @@ function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) 
                     onChange={handleFormChange}
                     name='name'
                     value={formData.name}
+                    autoComplete='off'
                 />
                 </InputGroup>
                 <InputGroup className={"no-border input-lg" + (birthdateFocus ? " input-group-focus" : "")}>
                 <InputGroupAddon addonType="prepend">
                     <InputGroupText>
-                    <i className="now-ui-icons text_caps-small"></i>
+                    <i className="now-ui-icons ui-1_calendar-60"></i>
                     </InputGroupText>
                 </InputGroupAddon>
                 <Input
@@ -102,28 +116,33 @@ function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) 
                     onChange={handleFormChange}
                     name='birthdate'
                     value={formData.birthdate}
+                    autoComplete='off'
                 />
                 </InputGroup>
                 <InputGroup className={"no-border input-lg" + (locationFocus ? " input-group-focus" : "")}>
                 <InputGroupAddon addonType="prepend">
                     <InputGroupText>
-                    <i className="now-ui-icons text_caps-small"></i>
+                    <i className="now-ui-icons location_compass-05"></i>
                     </InputGroupText>
                 </InputGroupAddon>
                 <Input
                     placeholder="Location"
-                    type="text"
+                    type="select"
                     onFocus={() => setLocationFocus(true)}
                     onBlur={() => setLocationFocus(false)}
                     onChange={handleFormChange}
                     name='location'
                     value={formData.location}
-                />
+                    autoComplete='off'
+                >
+                    <option value='n/a' disabled>Select a State</option>
+                    {renderStateOptions()}
+                </Input>
                 </InputGroup>
                 <InputGroup className={"no-border input-lg" + (emailFocus ? " input-group-focus" : "")}>
                 <InputGroupAddon addonType="prepend">
                     <InputGroupText>
-                    <i className="now-ui-icons text_caps-small"></i>
+                    <i className="now-ui-icons ui-1_email-85"></i>
                     </InputGroupText>
                 </InputGroupAddon>
                 <Input
@@ -134,6 +153,7 @@ function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) 
                     onChange={handleFormChange}
                     name='email_address'
                     value={formData.email_address}
+                    autoComplete='off'
                 />
                 </InputGroup>
             </CardBody>
@@ -151,7 +171,7 @@ function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) 
             <Button
                 block
                 className="btn-round"
-                color="danger"
+                color="primary"
                 size="lg"
                 onClick={() => deleteUser()}
                 >
@@ -159,7 +179,6 @@ function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) 
                 </Button>
                 </Card>
                 </Col>
-            </Container>
             </div>
             </div>
         </div>

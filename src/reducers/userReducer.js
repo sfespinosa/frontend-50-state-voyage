@@ -1,4 +1,4 @@
-export default function userReducer(state = { allUsers: [], user: [], token: '', loading: false}, action) {
+export default function userReducer(state = { allUsers: [], user: {}, token: '', loading: false}, action) {
         switch (action.type){
                 case 'LOADING_USER':
                         return {...state, loading: true}

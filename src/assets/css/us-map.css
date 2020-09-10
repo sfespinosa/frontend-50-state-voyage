@@ -10,6 +10,7 @@ path:hover {
 .us-state-map {
     position: center;
     background: white;
-    height: 92vh;
+    /* background-image: url("../img/bg9.jpg"); */
+    height: 90vh;
     width: 100%;
 }

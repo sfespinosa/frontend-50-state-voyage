@@ -1,5 +1,5 @@
 import React from 'react'
-import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col, CardColumns } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Button, CardColumns } from 'reactstrap';
 import EstablishmentCard from './EstablishmentCard'
 import classnames from 'classnames';
 import FriendsFeed from './FriendsFeed';
@@ -24,7 +24,8 @@ export default function DrawerBody({toggleModal, establishmentCards, remove, vie
 
     return(
         <div className='drawer-body'>
-            <Button id='add-establishment-btn' className='btn-round' size='lg' color='info' onClick={toggleModal}>Add an Establishment to your Collection for this State</Button>
+            <Button id='add-establishment-btn' className='btn-round' size='lg' color='primary' onClick={toggleModal}>Add an Establishment to your Collection</Button>
+        <hr></hr>
         <Nav tabs>
         <NavItem>
             <NavLink
