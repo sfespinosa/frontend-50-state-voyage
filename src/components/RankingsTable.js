@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table } from 'reactstrap';
+import { Table, UncontrolledTooltip } from 'reactstrap';
 
 class RankingsTable extends React.Component {
     
@@ -10,7 +10,10 @@ class RankingsTable extends React.Component {
                 <tr key={user.user_id}>
                     <th scope='row'>{index + 1}</th>
                     <td><a href={`/users/${user.user_id}`}>{user.username}</a></td>
-                    <td>{user.total_states}</td>
+                    <td id={`user-${user.user_id}`}>{user.total_states}</td>
+                    <UncontrolledTooltip placement="top" target={`user-${user.user_id}`}>
+                        {user.states_visited ? user.states_visited.join(', ') : 'No States Visited'}
+                    </UncontrolledTooltip>
                 </tr>
             )
         })

@@ -72,7 +72,7 @@ class EstablishmentPopUp extends React.Component {
                     lng: place.geometry.location.lng(),
                     price_level: place.price_level,
                     rating: place.rating,
-                    img_url: place.photos[1].getUrl(),
+                    img_url: place.photos[0].getUrl(),
                     website_url: place.website,
                     reference_id: place.reference,
                     },
