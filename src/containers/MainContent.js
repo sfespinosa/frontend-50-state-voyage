@@ -26,7 +26,6 @@ class MainContent extends React.Component {
             this.setState({
                 ...this.state,
                 drawerOpen: !this.state.drawerOpen,
-                // currentUsState: {}
             })
         }
     }
