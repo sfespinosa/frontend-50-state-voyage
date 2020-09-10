@@ -23,14 +23,37 @@ function AddEstablishment ({formData, collapseOpen,
         return(
             <Input id="inputState" type="select" defaultValue='n/a'>
                 <option value='n/a' disabled>Choose a category...</option>
-                <option value='Favorite'>Favorite</option>
-                <option value='Food/Drink'>Food/Drink</option>
+                <option value='Attractions'>Attractions</option>
+                <option value='Bars'>Bars</option>
+                <option value='Beaches'>Beaches</option>
+                <option value='Cafes/Bakeries'>Cafe/Bakery</option>
+                <option value='Dancing/Music'>Dancing/Music</option>
+                <option value='Hiking'>Hiking</option>
+                <option value='Movies/Theatres'>Movies/Theatre</option>
+                <option value='Museums'>Museum</option>
+                <option value='Restaurants'>Restaurant</option>
                 <option value='Shopping'>Shopping</option>
-                <option value='Party'>Party</option>
-                <option value='Want To Go'>Want To Go</option>
+                <option value='Sights/Views'>Sights/Views</option>
                 <option value='Other'>Other</option>
             </Input>
         )
+    }
+
+    const renderPriceLevel = (num) => {
+        switch (num) {
+            case 1:
+                return '$'
+            case 2:
+                return '$$'
+            case 3:
+                return '$$$'
+            case 4:
+                return '$$$$'
+            case 5:
+                return '$$$$$'
+            default:
+                return 'N/A'
+        }
     }
 
     return(
@@ -44,7 +67,7 @@ function AddEstablishment ({formData, collapseOpen,
                     </Row>
                     <Row>
                     <Col><strong>Phone Number: </strong><br/>{formData.phone_number ? formData.phone_number : 'N/A'}<br/></Col>
-                    <Col><strong>Price: </strong><br/>{formData.price_level ? formData.price_level : 'N/A'}<br/></Col>
+                    <Col><strong>Price: </strong><br/>{formData.price_level ? renderPriceLevel(formData.price_level) : 'N/A'}<br/></Col>
                     </Row>
                     <Row>
                     <Col><strong>Rating: </strong><br/>{formData.rating}<br/></Col>

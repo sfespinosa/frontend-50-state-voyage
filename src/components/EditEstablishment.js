@@ -54,11 +54,17 @@ function EditEstablishment ({ handleCollectionSubmit, handleCollectionEdit, view
         return(
             <Input id="inputState" type="select" defaultValue={viewEstablishment.map_marker ? viewEstablishment.map_marker.category : 'n/a'}>
                 <option value='n/a' disabled>Choose a category...</option>
-                <option value='Favorite'>Favorite</option>
-                <option value='Food/Drink'>Food/Drink</option>
-                <option value='Party'>Party</option>
+                <option value='Attractions'>Attractions</option>
+                <option value='Bars'>Bars</option>
+                <option value='Beaches'>Beaches</option>
+                <option value='Cafes/Bakeries'>Cafe/Bakery</option>
+                <option value='Dancing/Music'>Dancing/Music</option>
+                <option value='Hiking'>Hiking</option>
+                <option value='Movies/Theatres'>Movies/Theatre</option>
+                <option value='Museums'>Museum</option>
+                <option value='Restaurants'>Restaurant</option>
                 <option value='Shopping'>Shopping</option>
-                <option value='Want To Go'>Want To Go</option>
+                <option value='Sights/Views'>Sights/Views</option>
                 <option value='Other'>Other</option>
             </Input>
         )

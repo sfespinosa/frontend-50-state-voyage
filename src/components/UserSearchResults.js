@@ -9,10 +9,9 @@ import{
 const UserSearchResults = (props) => {
 
     const renderUserOptions = () => {
-        let sortedUsers = props.filteredUsers.sort((a,b) => a.username-b.username ? 1 : -1)
-        return sortedUsers.map(user => {
+        return props.filteredUsers.map(user => {
             return (
-            <Card key={user.id} className="text-center user-card" style={{ backgroundColor: '#333333', borderColor: '#333333', width: '25em' }}>
+            <Card key={user.id} className="text-center user-card" style={{ backgroundColor: '#333333', borderColor: '#FFF', width: '25em' }}>
                 <CardBody>
                 <blockquote className="blockquote blockquote-info mb-0">
                     <h5><a href={`/users/${user.id}`}>{user.username}</a></h5>

@@ -28,18 +28,20 @@ class UserSearch extends React.Component {
   }
   componentDidUpdate(prevProps){
     if (prevProps.userInfo.allUsers !== this.props.userInfo.allUsers) {
+      let sortedUsers = this.props.userInfo.allUsers.sort((a,b) => a.username-b.username ? 1 : -1)
     this.setState({
       ...this.state,
-      filteredUsers: this.props.userInfo.allUsers.filter(user => user.id !== this.props.userInfo.user.id),
-      allUsers: this.props.userInfo.allUsers.filter(user => user.id !== this.props.userInfo.user.id)
+      filteredUsers: sortedUsers.filter(user => user.id !== this.props.userInfo.user.id),
+      allUsers: sortedUsers.filter(user => user.id !== this.props.userInfo.user.id)
     })}
   }
 
   handleInputChange = e => {
     if (e.target.value === '') {
+      let sortedUsers = this.props.userInfo.allUsers.sort((a,b) => a.username-b.username ? 1 : -1)
       this.setState({
         ...this.state,
-        filteredUsers: this.props.userInfo.allUsers.filter(user => user.id !== this.props.userInfo.user.id)
+        filteredUsers: sortedUsers.filter(user => user.id !== this.props.userInfo.user.id)
       })
     } else {
       this.setState({
@@ -47,7 +49,6 @@ class UserSearch extends React.Component {
         filteredUsers: this.state.allUsers.filter(user => user.username.toLowerCase().includes(e.target.value.toLowerCase()))
       })
     }
-    console.log(e.target.value)
   }
 
   render(){

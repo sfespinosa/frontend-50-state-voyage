@@ -2,7 +2,7 @@ import React from 'react'
 import Switch from 'react-bootstrap-switch'
 import { Col, Row } from 'reactstrap'
 
-export default function DrawerHeader ({id, abbrv, capital_city, capital_lat, capital_lng, flag_img_url, name, nickname, handleSwitch, visited, toggleModal}) {
+export default function DrawerHeader ({id, abbrv, capital_city, flag_img_url, name, nickname, handleSwitch, visited}) {
 
     return(
         <div className='drawer-header'>

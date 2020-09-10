@@ -1,13 +1,15 @@
 import React from "react";
 
 // reactstrap components
-import { Container, Button } from "reactstrap";
+import { Container, Button, Fade } from "reactstrap";
 
 // core components
 function LandingPage() {
   let pageHeader = React.createRef();
+  const [fadeIn, setFadeIn] = React.useState(false)
 
   React.useEffect(() => {
+    setFadeIn(true)
     if (window.innerWidth > 991) {
       const updateScroll = () => {
         let windowScrollTop = window.pageYOffset / 3;
@@ -22,7 +24,7 @@ function LandingPage() {
   });
 
   return (
-    <>
+    <Fade in={fadeIn}>
       <div className="page-header clear-filter" filter-color="blue">
         <div
           className="page-header-image"
@@ -58,7 +60,7 @@ function LandingPage() {
           </div>
         </Container>
       </div>
-    </>
+    </Fade>
   );
 }
 

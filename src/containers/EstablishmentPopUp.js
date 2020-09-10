@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, ModalBody, ModalFooter, Button } from "reactstrap";
+import { Modal, ModalBody } from "reactstrap";
 import AddEstablishment from '../components/AddEstablishment';
 import EditEstablishment from '../components/EditEstablishment';
 import SearchEstablishmentInput from '../components/SearchEstablishmentInput';
@@ -72,7 +72,7 @@ class EstablishmentPopUp extends React.Component {
                     lng: place.geometry.location.lng(),
                     price_level: place.price_level,
                     rating: place.rating,
-                    img_url: place.photos[0].getUrl(),
+                    img_url: place.photos[1].getUrl(),
                     website_url: place.website,
                     reference_id: place.reference,
                     },
