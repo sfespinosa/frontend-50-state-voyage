@@ -14,7 +14,7 @@ import {
 function NavBar(props){
     return (
     <>
-        <Navbar className="bg-info" expand="lg">
+        <Navbar className="bg-info fixed-top" expand="lg">
             <Container>
             <NavbarBrand>
             <img

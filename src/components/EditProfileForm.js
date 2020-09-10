@@ -11,11 +11,25 @@ import {
     InputGroupAddon,
     InputGroupText,
     InputGroup,
-    Container,
     Col,
 } from "reactstrap";
 
 function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) {
+    const usStates = [
+        'Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida',
+        'Georgia', 'Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine',
+        'Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska',
+        'Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota'
+        ,'Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota',
+        'Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming']
+
+    const renderStateOptions = () => {
+        return usStates.map((usState, idx) => {
+            return (
+            <option key={idx} value={usState}>{usState}</option>
+            )
+        })
+    }
 
     // form styling
     const [nameFocus, setNameFocus] = React.useState(false);
@@ -67,7 +81,6 @@ function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) 
         <div className='edit-profile-form'>
             <div>
             <div>
-            {/* <Container> */}
                 <Col className="ml-auto mr-auto form-body" md="3">
                 <Card className="card-login card-plain">
                 <Form className="form" onSubmit={(e) => saveProfileChanges(e)}>
@@ -114,14 +127,17 @@ function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) 
                 </InputGroupAddon>
                 <Input
                     placeholder="Location"
-                    type="text"
+                    type="select"
                     onFocus={() => setLocationFocus(true)}
                     onBlur={() => setLocationFocus(false)}
                     onChange={handleFormChange}
                     name='location'
                     value={formData.location}
                     autoComplete='off'
-                />
+                >
+                    <option value='n/a' disabled>Select a State</option>
+                    {renderStateOptions()}
+                </Input>
                 </InputGroup>
                 <InputGroup className={"no-border input-lg" + (emailFocus ? " input-group-focus" : "")}>
                 <InputGroupAddon addonType="prepend">
@@ -163,7 +179,6 @@ function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) 
                 </Button>
                 </Card>
                 </Col>
-            {/* </Container> */}
             </div>
             </div>
         </div>

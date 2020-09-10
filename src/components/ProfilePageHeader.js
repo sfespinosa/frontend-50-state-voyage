@@ -42,16 +42,6 @@ function ProfilePageHeader(props) {
         <p>States to Visit</p>
       </div>
     </div>
-      {/* <div className="content">
-      <div className="social-description">
-        <h2>48</h2>
-        <p>Following</p>
-      </div>
-      <div className="social-description">
-        <h2>48</h2>
-        <p>Followers</p>
-      </div>
-    </div> */}
   </Container>
   )}
 

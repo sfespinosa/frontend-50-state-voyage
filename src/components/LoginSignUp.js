@@ -116,10 +116,9 @@ function LoginSignUp(props) {
     )}
 
     const renderStateOptions = () => {
-      console.log(props.usStates)
       return props.usStates.map(usState => {
         return (
-          <option key={usState.id} value={usState.name}>{usState.abbrv}</option>
+          <option key={usState.id} value={usState.name}>{usState.name}</option>
         )
       })
     }

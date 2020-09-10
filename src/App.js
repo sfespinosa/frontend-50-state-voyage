@@ -26,6 +26,12 @@ class App extends React.Component {
   }
 }
 
+  // componentDidUpdate(prevProps){
+  //   if (prevProps.userInfo.user !== this.props.userInfo.user) {
+  //     this.props.handlePersist()
+  //   }
+  // }
+
   generateScriptTag = () => {
     let script = document.createElement('script')
     script.async = true

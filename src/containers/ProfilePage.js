@@ -98,7 +98,7 @@ function ProfilePage(props) {
   return (
       <div className="wrapper">
         <NavBar user={props.user} logout={props.logout}/>
-        <ProfilePageHeader user={profileUser}/>
+        <ProfilePageHeader user={confirmCurrentUser() ? props.user : profileUser}/>
         <div className="section">
             {confirmCurrentUser() ? renderEditProfileButton() : renderFollowUserButton()}
         </div>

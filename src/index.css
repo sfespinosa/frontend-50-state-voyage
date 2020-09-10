@@ -145,7 +145,7 @@ code {
   margin: 1.25rem; 
   overflow: scroll;
   margin-top: -95px;
-  position: absolute;
+  position: relative;
 }
 
 .card {
@@ -170,4 +170,8 @@ code {
 
 .profile-page-cards {
   margin-top: 70px;
+}
+
+.rankings-table {
+  position: relative;
 }
