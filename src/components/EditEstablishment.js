@@ -27,7 +27,7 @@ function EditEstablishment ({ handleCollectionSubmit, handleCollectionEdit, view
     const renderCollectionView = () => {
         return(
             <div className='collection-display'>
-                Comments: {viewEstablishment.user_comments}<br/>
+                Your {viewEstablishment.user_id === user.id ? null : <a href={`/users/${viewEstablishment.user_id}`}>Friend's </a>}Comments: {viewEstablishment.user_comments}<br/>
                 Establishment visited before?: {viewEstablishment.visited ? 'Yes' : 'No'}<br/>
                 Map Marker Added?: {viewEstablishment.map_marker ? `Yes`: 'No'}<br/>
                 {viewEstablishment.map_marker ? `Map Marker Category: ${viewEstablishment.map_marker.category}`: null}<br/>

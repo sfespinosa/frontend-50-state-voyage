@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import {
   Button,
   Container,
+  Fade
 } from "reactstrap";
 
 // core components
@@ -18,7 +19,9 @@ function ProfilePage(props) {
   let profileUser = props.allUsers.find(user => user.id.toString() === userId)
 
   //styling
+  const [fadeIn, setFadeIn] = React.useState(false)
   React.useEffect(() => {
+    setFadeIn(true)
     document.body.classList.add("profile-page");
     document.body.classList.add("sidebar-collapse");
     document.documentElement.classList.remove("nav-open");
@@ -62,6 +65,7 @@ function ProfilePage(props) {
   }
 
   const handleFollowingUser = (e) => {
+    e.preventDefault()
     if (e.target.innerText === 'Unfollow') {
       props.user.active_relationships.map((user) => {
           if (user.followed_user_id.toString() === userId) {
@@ -72,7 +76,7 @@ function ProfilePage(props) {
       followed_user_id: userId,
       follower_id: props.user.id
     }
-    return props.createUserRelationship(formData)
+    props.createUserRelationship(formData)
   }
   }
 
@@ -95,7 +99,7 @@ function ProfilePage(props) {
   }
   
   return (
-    <>
+    // <Fade in={fadeIn}>
       <div className="wrapper">
         <NavBar user={props.user} logout={props.logout}/>
         <ProfilePageHeader user={profileUser}/>
@@ -104,7 +108,7 @@ function ProfilePage(props) {
             <ProfilePageBody confirmCurrentUser={confirmCurrentUser()} profileEstablishmentCollection={props.establishmentCollection.filter(ec => ec.user_id.toString() === profileUser.id.toString())}/>
         </div>
       </div>
-    </>
+    // </Fade>
   );
 }
 

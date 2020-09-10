@@ -6,6 +6,7 @@ import {
   InputGroupAddon,
   InputGroupText,
   InputGroup,
+  Fade
 } from "reactstrap";
 import NavBar from './NavBar';
 import { connect } from 'react-redux'
@@ -16,9 +17,15 @@ class UserSearch extends React.Component {
   state = {
     filteredUsers: [],
     allUsers: [],
-    usernameFocus: false
+    usernameFocus: false,
+    fadeIn: false
   }
   
+  componentDidMount(){
+    this.setState({...this.state, 
+      fadeIn: true
+    })
+  }
   componentDidUpdate(prevProps){
     if (prevProps.userInfo.allUsers !== this.props.userInfo.allUsers) {
     this.setState({
@@ -45,6 +52,7 @@ class UserSearch extends React.Component {
 
   render(){
     return(
+      <Fade in={this.state.fadeIn}>
       <div className="page-header clear-filter" filter-color="blue">
         <NavBar user={this.props.userInfo.user} logout={this.props.logout}/>
         <div
@@ -78,6 +86,7 @@ class UserSearch extends React.Component {
         </div>
         <UserSearchResults filteredUsers={this.state.filteredUsers}/>
       </div>
+      </Fade>
     )
 }
 }

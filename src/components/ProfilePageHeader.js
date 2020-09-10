@@ -30,7 +30,7 @@ function ProfilePageHeader(props) {
     </div>
     <h3 className="title">{props.user.username}</h3>
     <p className="category">{props.user.name}<br/>
-      Current State: {props.user.location}<br/>
+      From {props.user.location}<br/>
       Age: {props.user.age}</p>
     <div className="content">
       <div className="social-description">
