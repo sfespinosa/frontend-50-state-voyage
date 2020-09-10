@@ -72,7 +72,7 @@ function LoginSignUp(props) {
               onBlur={() => setUsernameFocus(false)}
               onChange={handleFormChange}
               name='username'
-              autocomplete='off'
+              autoComplete='off'
             />
             </InputGroup>
           <InputGroup className={"no-border input-lg" + (passwordFocus ? " input-group-focus" : "")}>
@@ -88,7 +88,7 @@ function LoginSignUp(props) {
               onBlur={() => setPasswordFocus(false)}
               onChange={handleFormChange}
               name='password'
-              autocomplete='off'
+              autoComplete='off'
             />
           </InputGroup>
         </CardBody>
@@ -146,7 +146,7 @@ function LoginSignUp(props) {
                 onBlur={() => setNameFocus(false)}
                 onChange={handleFormChange}
                 name='name'
-                autocomplete='off'
+                autoComplete='off'
               />
             </InputGroup>
             <InputGroup className={"no-border input-lg" + (birthdateFocus ? " input-group-focus" : "")}>
@@ -195,7 +195,7 @@ function LoginSignUp(props) {
                 onBlur={() => setEmailFocus(false)}
                 onChange={handleFormChange}
                 name='email_address'
-                autocomplete='off'
+                autoComplete='off'
               />
             </InputGroup>
             <InputGroup className={"no-border input-lg" + (usernameFocus ? " input-group-focus" : "")}>
@@ -211,7 +211,7 @@ function LoginSignUp(props) {
                 onBlur={() => setUsernameFocus(false)}
                 onChange={handleFormChange}
                 name='username'
-                autocomplete='off'
+                autoComplete='off'
               />
               </InputGroup>
             <InputGroup className={"no-border input-lg" + (passwordFocus ? " input-group-focus" : "")}>
@@ -227,7 +227,7 @@ function LoginSignUp(props) {
                 onBlur={() => setPasswordFocus(false)}
                 onChange={handleFormChange}
                 name='password'
-                autocomplete='off'
+                autoComplete='off'
               />
             </InputGroup>
           </CardBody>

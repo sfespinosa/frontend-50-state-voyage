@@ -3,7 +3,8 @@ import{
     Card,
     CardBody,
     Row,
-    Col
+    Col,
+    CardColumns
   } from "reactstrap";
 const UserSearchResults = (props) => {
 
@@ -28,11 +29,9 @@ const UserSearchResults = (props) => {
 
     return(
         <div className='user-search-results'>
-            <Row style={{ align: 'center'}}>
-                <Col>
+            <CardColumns>
                 {renderUserOptions()}
-                </Col>
-            </Row>
+            </CardColumns>
         </div>
     )
 }

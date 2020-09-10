@@ -77,7 +77,7 @@ class UserSearch extends React.Component {
                 onBlur={() => this.setState({...this.state, usernameFocus: false})}
                 onChange={this.handleInputChange}
                 name='username'
-                autocomplete='off'
+                autoComplete='off'
                 className='user-search-input'
               />
             </InputGroup>

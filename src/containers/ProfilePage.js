@@ -4,8 +4,7 @@ import { useParams } from 'react-router-dom'
 // reactstrap components
 import {
   Button,
-  Container,
-  Fade
+  Container
 } from "reactstrap";
 
 // core components
@@ -19,9 +18,7 @@ function ProfilePage(props) {
   let profileUser = props.allUsers.find(user => user.id.toString() === userId)
 
   //styling
-  const [fadeIn, setFadeIn] = React.useState(false)
   React.useEffect(() => {
-    setFadeIn(true)
     document.body.classList.add("profile-page");
     document.body.classList.add("sidebar-collapse");
     document.documentElement.classList.remove("nav-open");
@@ -41,14 +38,14 @@ function ProfilePage(props) {
 
   const renderEditProfileButton = () => {
     return (
-      <Container>
+      <div>
             <div className="button-container">
               <Button className="btn-round" color="info" size="lg" onClick={()=>handleEditProfileClick()}>
                 {editProfile ? 'Close' : 'Edit Profile'}
               </Button>
             </div>
               {editProfile ? <EditProfileForm user={props.user} close={handleEditProfileClick} editUserProfile={props.editUserProfile} deleteProfile={props.deleteUser} logout={props.logout}/> : null}
-      </Container>
+      </div>
     )
   }
 
@@ -99,16 +96,14 @@ function ProfilePage(props) {
   }
   
   return (
-    // <Fade in={fadeIn}>
       <div className="wrapper">
         <NavBar user={props.user} logout={props.logout}/>
         <ProfilePageHeader user={profileUser}/>
         <div className="section">
             {confirmCurrentUser() ? renderEditProfileButton() : renderFollowUserButton()}
-            <ProfilePageBody confirmCurrentUser={confirmCurrentUser()} profileEstablishmentCollection={props.establishmentCollection.filter(ec => ec.user_id.toString() === profileUser.id.toString())}/>
         </div>
+            <ProfilePageBody confirmCurrentUser={confirmCurrentUser()} profileEstablishmentCollection={props.establishmentCollection.filter(ec => ec.user_id.toString() === profileUser.id.toString())}/>
       </div>
-    // </Fade>
   );
 }
 

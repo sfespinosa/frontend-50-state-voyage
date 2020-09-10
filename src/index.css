@@ -18,7 +18,11 @@ code {
 }
 
 .edit-profile-form {
-  background: #696969
+  margin-left: 20px;
+  margin-right: 20px;
+  background: #696969;
+  position: relative;
+  border-radius: 4px;
 }
 
 .drawer-header {
@@ -140,6 +144,8 @@ code {
   text-align: center;
   margin: 1.25rem; 
   overflow: scroll;
+  margin-top: -95px;
+  position: absolute;
 }
 
 .card {
@@ -151,9 +157,17 @@ code {
   align-content: center;
   margin-left: 25px;
   margin-right: 25px;
-
 }
 
 .user-card {
   margin-right: 25px
+}
+
+.profile-page-banner {
+  border: 2px solid #696969;
+  border-radius: 4px;
+}
+
+.profile-page-cards {
+  margin-top: 70px;
 }

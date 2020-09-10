@@ -38,6 +38,9 @@ class ProfilePageBody extends React.Component {
         return(
             <div className='profile-page-body'>
                 {this.props.confirmCurrentUser ? <RankingsTable user={this.props.user}/> : null}
+                <div className="p-3 bg-primary my-2 rounded profile-page-banner" style={{margin: 'auto'}}>
+                    <h2 style={{color: 'white'}}>User's Saved Establishments</h2>
+                </div>
                 <CardColumns>
                 {this.renderEstablishmentCards()}
                 </CardColumns>

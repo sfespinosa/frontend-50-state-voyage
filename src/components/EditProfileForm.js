@@ -67,8 +67,8 @@ function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) 
         <div className='edit-profile-form'>
             <div>
             <div>
-            <Container>
-                <Col className="ml-auto mr-auto form-body" md="4">
+            {/* <Container> */}
+                <Col className="ml-auto mr-auto form-body" md="3">
                 <Card className="card-login card-plain">
                 <Form className="form" onSubmit={(e) => saveProfileChanges(e)}>
             <CardBody>
@@ -86,6 +86,7 @@ function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) 
                     onChange={handleFormChange}
                     name='name'
                     value={formData.name}
+                    autoComplete='off'
                 />
                 </InputGroup>
                 <InputGroup className={"no-border input-lg" + (birthdateFocus ? " input-group-focus" : "")}>
@@ -102,6 +103,7 @@ function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) 
                     onChange={handleFormChange}
                     name='birthdate'
                     value={formData.birthdate}
+                    autoComplete='off'
                 />
                 </InputGroup>
                 <InputGroup className={"no-border input-lg" + (locationFocus ? " input-group-focus" : "")}>
@@ -118,6 +120,7 @@ function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) 
                     onChange={handleFormChange}
                     name='location'
                     value={formData.location}
+                    autoComplete='off'
                 />
                 </InputGroup>
                 <InputGroup className={"no-border input-lg" + (emailFocus ? " input-group-focus" : "")}>
@@ -134,6 +137,7 @@ function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) 
                     onChange={handleFormChange}
                     name='email_address'
                     value={formData.email_address}
+                    autoComplete='off'
                 />
                 </InputGroup>
             </CardBody>
@@ -151,7 +155,7 @@ function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) 
             <Button
                 block
                 className="btn-round"
-                color="danger"
+                color="primary"
                 size="lg"
                 onClick={() => deleteUser()}
                 >
@@ -159,7 +163,7 @@ function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) 
                 </Button>
                 </Card>
                 </Col>
-            </Container>
+            {/* </Container> */}
             </div>
             </div>
         </div>

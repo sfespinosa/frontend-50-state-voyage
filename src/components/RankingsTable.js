@@ -7,7 +7,7 @@ class RankingsTable extends React.Component {
         // if (this.props.user) {
             return this.props.user.total_states_rankings.map((user, index) => {
                 return (
-                <tr>
+                <tr key={user.user_id}>
                     <th scope='row'>{index + 1}</th>
                     <td><a href={`/users/${user.user_id}`}>{user.username}</a></td>
                     <td>{user.total_states}</td>
@@ -19,8 +19,11 @@ class RankingsTable extends React.Component {
 
     render(){
         return (
-        <div>
-            <Table size='sm' hover>
+        <div className='rankings-table'>
+            <div className="p-3 bg-primary my-2 rounded profile-page-banner">
+                <h2 style={{color: 'white'}}>State Count Comparison with Friends</h2>
+            </div>
+            <Table size='sm' hover bordered>
                 <thead>
                     <tr>
                         <th>#</th>
