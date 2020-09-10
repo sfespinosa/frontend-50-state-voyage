@@ -8,6 +8,8 @@ import FilterMapMenu from '../components/FilterMapMenu';
 import { fetchAllUsStates } from '../actions/usStateActions'
 
 class EstablishmentMap extends Component {
+
+  
   static defaultProps = {
     center: {
       lat: 38.555605,
@@ -18,9 +20,20 @@ class EstablishmentMap extends Component {
 
   state = {
     center: {
-      lat: 38.555605,
-      lng: -121.468926
-    },
+    lat: 38.555605,
+    lng: -121.468926
+  }}
+
+  componentDidUpdate(prevProps){
+    if (prevProps.user !== this.props.user){
+      let usState = this.props.usStates.find(state => state.name === this.props.user.location)
+      this.setState({
+        center: {
+          lat: usState.capital_lat,
+          lng: usState.capital_lng
+        }
+      })
+    }
   }
 
   handleMarkerClick = (lat, lng) => {

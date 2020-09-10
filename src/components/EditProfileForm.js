@@ -75,7 +75,7 @@ function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) 
                 <InputGroup className={"no-border input-lg" + (nameFocus ? " input-group-focus" : "")}>
                 <InputGroupAddon addonType="prepend">
                     <InputGroupText>
-                    <i className="now-ui-icons text_caps-small"></i>
+                    <i className="now-ui-icons users_single-02"></i>
                     </InputGroupText>
                 </InputGroupAddon>
                 <Input
@@ -91,7 +91,7 @@ function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) 
                 <InputGroup className={"no-border input-lg" + (birthdateFocus ? " input-group-focus" : "")}>
                 <InputGroupAddon addonType="prepend">
                     <InputGroupText>
-                    <i className="now-ui-icons text_caps-small"></i>
+                    <i className="now-ui-icons ui-1_calendar-60"></i>
                     </InputGroupText>
                 </InputGroupAddon>
                 <Input
@@ -107,7 +107,7 @@ function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) 
                 <InputGroup className={"no-border input-lg" + (locationFocus ? " input-group-focus" : "")}>
                 <InputGroupAddon addonType="prepend">
                     <InputGroupText>
-                    <i className="now-ui-icons text_caps-small"></i>
+                    <i className="now-ui-icons location_compass-05"></i>
                     </InputGroupText>
                 </InputGroupAddon>
                 <Input
@@ -123,7 +123,7 @@ function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) 
                 <InputGroup className={"no-border input-lg" + (emailFocus ? " input-group-focus" : "")}>
                 <InputGroupAddon addonType="prepend">
                     <InputGroupText>
-                    <i className="now-ui-icons text_caps-small"></i>
+                    <i className="now-ui-icons ui-1_email-85"></i>
                     </InputGroupText>
                 </InputGroupAddon>
                 <Input

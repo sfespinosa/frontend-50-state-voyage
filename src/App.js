@@ -11,6 +11,7 @@ import MainContent from './containers/MainContent'
 import ProfilePage from './containers/ProfilePage'
 import EstablishmentMap from './containers/EstablishmentMap'
 import UserSearch from './components/UserSearch';
+import NotFoundPage from './components/NotFoundPage';
 
 class App extends React.Component {
 
@@ -102,6 +103,7 @@ class App extends React.Component {
         <Route exact path="/"> 
           {!!localStorage.token ? <Redirect to='/main' /> : <LandingPage/>}
         </Route>
+        <Route component={NotFoundPage}/>
       </Switch>
     </div>
     )}

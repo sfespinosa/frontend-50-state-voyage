@@ -25,7 +25,7 @@ const SearchEstablishmentInput = (props) => {
     return (
         <div className='establishment-popup-header'>
             <h2>
-            Add establishment to your collection: 
+            Search for an establishment: 
             </h2>
         <div className='places-input-container'>
             <Input placeholder='Enter establishment name...' id='places-input'/>

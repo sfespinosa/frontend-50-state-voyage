@@ -30,7 +30,7 @@ function ProfilePageHeader(props) {
     </div>
     <h3 className="title">{props.user.username}</h3>
     <p className="category">{props.user.name}<br/>
-      {props.user.location}<br/>
+      Current State: {props.user.location}<br/>
       Age: {props.user.age}</p>
     <div className="content">
       <div className="social-description">
@@ -68,7 +68,7 @@ function ProfilePageHeader(props) {
           }}
           ref={pageHeader}
         ></div>
-          {props.user ? renderUserProfile() : <h3>User cannot be found!</h3>}
+          {props.user ? renderUserProfile() : null}
       </div>
     </>
   );
