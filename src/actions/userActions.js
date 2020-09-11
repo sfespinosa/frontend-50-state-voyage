@@ -75,3 +75,14 @@ export function deleteUser(id){
         })
     }
 }
+
+export function fetchAllUsers(){
+    return (dispatch) => {
+        dispatch({type: 'LOADING_USER'})
+        fetch('http://localhost:3000/users')
+        .then(res => res.json())
+        .then(json => {
+            dispatch({type: 'FETCH_ALL_USERS', allUsers: json})
+        })
+    }
+}

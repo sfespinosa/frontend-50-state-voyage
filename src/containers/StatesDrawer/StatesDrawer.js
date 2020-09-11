@@ -19,32 +19,31 @@ class StatesDrawer extends React.Component {
         this.props.fetchAllStateCollections()
     }
 
-    componentDidUpdate(prevProps, prevState){
+    componentDidUpdate(prevProps){
         if(prevProps.usState !== this.props.usState && this.props.usState !== {}){
             this.stateVisited()
-        }
-
-        if(!!prevState.viewEstablishment && this.state.modalOpen === false) {
-            this.setState({
-                viewEstablishment: false
-            })
         }
     }
 
     stateVisited = () => {
-        this.setState({
+        this.setState({...this.state,
             visited: !!this.props.allStateCollections.find(collection => collection.user_id === this.props.userId && collection.us_state.id === this.props.usState.id)
         })
     }
 
     toggleModal = () => {
-        this.setState({
-            modalOpen: !this.state.modalOpen,
-        })
+        if (this.state.modalOpen) {
+            this.setState({...this.state,
+                modalOpen: !this.state.modalOpen
+        })} else {
+            this.setState({...this.state,
+                modalOpen: !this.state.modalOpen,
+                viewEstablishment: false})
+        }
     }
 
     handleSwitch = (state, usId) => {
-        this.setState({
+        this.setState({...this.state,
             visited: !this.state.visited
         })
         if (state) {
@@ -75,7 +74,7 @@ class StatesDrawer extends React.Component {
         return(
             <div className={this.props.show ? 'side-drawer open' : 'side-drawer'}>
                 <DrawerHeader {...this.props.usState} handleSwitch={this.handleSwitch} show={this.props.show} allStateCollections={this.props.allStateCollections} visited={this.state.visited}/>
-                <DrawerBody viewDetails={this.viewDetails} toggleModal={this.toggleModal} establishmentCards={this.filteredEstablishmentCards()} remove={this.props.removeFromEstablishmentCollection}/>
+                <DrawerBody show={this.props.show} currentState={this.props.usState} viewDetails={this.viewDetails} toggleModal={this.toggleModal} establishmentCards={this.filteredEstablishmentCards()} remove={this.props.removeFromEstablishmentCollection} user={this.props.user}/>
                 <EstablishmentPopUp viewEstablishment={this.state.viewEstablishment} currentState={this.props.usState} modalOpen={this.state.modalOpen} toggleModal={this.toggleModal} editEstablishmentCollection={this.props.editEstablishmentCollection}/>
             </div>
         )}
@@ -83,6 +82,7 @@ class StatesDrawer extends React.Component {
 
 const mapStateToProps = state => {
     return {
+        user: state.userInfo.user, 
         allStateCollections: state.stateCollectionInfo.allStateCollections,
         establishmentCollection: state.establishmentCollectionInfo.establishmentCollection
     }

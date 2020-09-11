@@ -6,7 +6,7 @@ import {
   NavItem,
   NavLink,
   Nav,
-  Container
+  Container,
 } from "reactstrap";
 
 // core components
@@ -14,15 +14,21 @@ import {
 function NavBar(props){
     return (
     <>
-        <Navbar className="bg-info" expand="lg">
+        <Navbar className={'bg-info' + (props.true ? ' fixed-top' : '')} expand="lg">
             <Container>
             <NavbarBrand>
-                Hello, {props.user}!
+            <img
+              alt="website-logo"
+              width='90'
+            //   height='35'
+              className="n-logo"
+              src={require("../assets/img/50-state-voyage-logo.png")}
+            ></img>
             </NavbarBrand>
                 <button className="navbar-toggler" id="navbarNav" type="button">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-            <Nav navbar>
+            <Nav navbar className="mr-auto">
                 <NavItem>
                     <NavLink href="/main">
                         Home <span className="sr-only">(current)</span>
@@ -35,10 +41,16 @@ function NavBar(props){
                 </NavItem>
             </Nav>
             <Nav className="ml-auto" navbar>
-                <NavItem className='active'>
-                    <NavLink href='/profile'>
+                <NavItem>
+                    <NavLink href={`/users/${props.user.id}`}>
                     <i className="now-ui-icons users_circle-08"></i>
                     <p>View Your Profile</p>
+                    </NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink href='/findusers'>
+                    <i className="now-ui-icons ui-1_zoom-bold"></i>
+                    <p>Find Other Users</p>
                     </NavLink>
                 </NavItem>
                 <NavItem>

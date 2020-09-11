@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, ModalBody, ModalFooter, Button } from "reactstrap";
+import { Modal, ModalBody } from "reactstrap";
 import AddEstablishment from '../components/AddEstablishment';
 import EditEstablishment from '../components/EditEstablishment';
 import SearchEstablishmentInput from '../components/SearchEstablishmentInput';
@@ -43,7 +43,6 @@ class EstablishmentPopUp extends React.Component {
                     img_url: '',
                     website_url: '',
                     reference_id: '',
-                    us_state_id: this.props.currentState.id
                 },
                 collapseOpen: false
         })}
@@ -62,24 +61,26 @@ class EstablishmentPopUp extends React.Component {
     }
 
     handleOnChange = place => {
-        console.log(place)
-        this.setState({
-            ...this.state,
-            formData: {
-                name: place.name,
-                address: place.formatted_address,
-                phone_number: place.formatted_phone_number,
-                lat: place.geometry.location.lat(),
-                lng: place.geometry.location.lng(),
-                price_level: place.price_level,
-                rating: place.rating,
-                img_url: place.photos[0].getUrl(),
-                website_url: place.website,
-                reference_id: place.reference,
-                us_state_id: this.props.currentState.id
-                },
-            collapseOpen: true
-            })
+        if (place.address_components.some(e => e.short_name === this.props.currentState.abbrv)) {
+            this.setState({
+                ...this.state,
+                formData: {
+                    name: place.name,
+                    address: place.formatted_address,
+                    phone_number: place.formatted_phone_number,
+                    lat: place.geometry.location.lat(),
+                    lng: place.geometry.location.lng(),
+                    price_level: place.price_level,
+                    rating: place.rating,
+                    img_url: place.photos[0].getUrl(),
+                    website_url: place.website,
+                    reference_id: place.reference,
+                    },
+                collapseOpen: true
+                })
+        } else {
+            alert(`Please choose an establishment in ${this.props.currentState.name}`)
+        }
     }
 
     handleEstablishmentSubmit = () => {
@@ -89,7 +90,10 @@ class EstablishmentPopUp extends React.Component {
                 currentEstablishment: this.props.establishments.find(establishment => establishment.reference_id === this.state.formData.reference_id)
             })
         } else {
-            this.props.addToEstablishments(this.state.formData)
+            this.props.addToEstablishments({
+                ...this.state.formData,
+                us_state_id: this.props.currentState.id
+            })
             this.setState({
                 ...this.state,
                 currentEstablishment: this.props.currentEstablishment
@@ -171,19 +175,19 @@ class EstablishmentPopUp extends React.Component {
                 <ModalBody>
                     {!!this.props.viewEstablishment 
                     ? 
-                    <EditEstablishment {...this.state} handleCollectionEdit={this.handleCollectionEdit} viewEstablishment={this.props.viewEstablishment} handleCollectionRemoval={this.handleCollectionRemoval}/>
+                    <EditEstablishment {...this.state} handleCollectionEdit={this.handleCollectionEdit} viewEstablishment={this.props.viewEstablishment} handleCollectionRemoval={this.handleCollectionRemoval} user={this.props.user} handleCollectionSubmit={this.handleCollectionSubmit}/>
                     : <AddEstablishment {...this.state} handleCollectionSubmit={this.handleCollectionSubmit} handleEstablishmentSubmit={this.handleEstablishmentSubmit}/>
                     }
-                <hr></hr>
+                {/* <hr></hr> */}
                 </ModalBody>
-                <ModalFooter>
+                {/* <ModalFooter>
                 <Button
                     color="info"
                     type="button"
                     onClick={this.props.toggleModal}
                 >Close
                 </Button>
-                </ModalFooter>
+                </ModalFooter> */}
             </Modal>
     )}
 }
