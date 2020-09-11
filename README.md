@@ -1,68 +1,77 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## <img src='./src/assets/img/50-state-voyage-blue.png' alt='app logo'/>
 
-## Available Scripts
+# About
+While travelling is on hold due to COVID-19, ‘50 State Voyage’ is an application that allows you to track states you’ve been to and plan out visits to states you’ll visit sometime in the future.
 
-In the project directory, you can run:
+You can also share some of your favorite places with friends and bounce ideas with each other for your respective trips!
 
-### `yarn start`
+# Technologies
+* React - version '16.13.1'
+* Redux - version '4.0.5'
+* Google API
+* Reactstrap
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Getting Started
+** You've reached the '50 State Voyage' front-end repo. To reach the back-end repo, please go to <a href='https://github.com/sfespinosa/backend-50-state-voyage'>https://github.com/sfespinosa/backend-50-state-voyage</a>. Both repos are required to run this project.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+To start, complete the steps in the back-end repository then continue below to complete the installation.
 
-### `yarn test`
+1. Obtain a free <a href='https://console.developers.google.com/'>Google API key</a>
+2. Clone this repository and cd into the directory
+3. Install NPM packages
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    npm install
 
-### `yarn build`
+4. Create a .env file in the main directory and enter your API Key
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    REACT_APP_API_KEY=YOUR_API_KEY
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+5. Ensure the backend is running on http://localhost:3000/ then start your server
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    npm start
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Features
+* Log in as a new or returning user
+* View the US Map and visually see which states you've been to
+* Select a state on the US Map to begin
+    * Read data about the state and view the state flag
+    * Toggle whether or not you've visited that state
+    * View/Edit/Remove any of your saved establishments
+    * View your Friends Feed to see what your friends have saved (and save any for yourself!)
+    * Add any new establishments to your collection
+    * Create Map Markers to display on your Establishment Map
+* View the Establishment Map
+    * Map is defaulted to the home state of the user
+    * Select a state on the side menu to view a different state
+    * View that Map Markers to determine which establishments are near each other for your next trip
+    * Click a Map Marker to center the establishment on your map
+    * Hover over it to view details about the establishment
+* View Your profile
+    * Edit your profile and update your home state if you move
+    * Delete your profile (please don't go!)
+    * View where you rank in total states amongst your friends
+    * Hover over any state counts to view which states your friends have been to
+    * View/Edit/Remove any of your saved establishments for all states
+* Find Other Users
+    * View a list of all users on the application
+    * Search by username to find a specific user
+    * Click on user to view their profile
+    * Follow/Unfollow other users through their profile page
+* Log out and return to the main page
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Contact Info
+Scott Espinosa<br/>
+scottjames.espinosa@gmail.com<br/>
+https://github.com/sfespinosa <br/>
+https://www.linkedin.com/in/scottespinosa/
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# License
+Distributed under the MIT License.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+# Contributions
+* <a href='https://github.com/CivilServiceUSA/us-states'>Civil Service USA</a>
+* <a href='https://www.npmjs.com/package/react-usa-map'>React-US-Map</a>
+* <a href='https://github.com/google-map-react/google-map-react'>Google Map React</a>
+* <a href='https://www.creative-tim.com/'>Creative Tim</a>
+* <a href='https://material.io/'>Material Design</a>

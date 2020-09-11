@@ -13,10 +13,6 @@ import ConfirmationPopUp from '../containers/ConfirmationPopUp'
 export default function EstablishmentCard(props){
     const [modalOpen, setModalOpen] = React.useState(false);
 
-    const removeFromCollection = () => {
-        props.remove(props.id)
-    }
-
     return(
         <Card>
             <CardImg top width="100%" src={props.establishment.img_url} alt="establishment" />
