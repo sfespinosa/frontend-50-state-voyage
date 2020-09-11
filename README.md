@@ -20,15 +20,15 @@ To start, complete the steps in the back-end repository then continue below to c
 2. Clone this repository and cd into the directory
 3. Install NPM packages
 
-    npm install
+        npm install
 
 4. Create a .env file in the main directory and enter your API Key
 
-    REACT_APP_API_KEY=YOUR_API_KEY
+        REACT_APP_API_KEY=YOUR_API_KEY
 
 5. Ensure the backend is running on http://localhost:3000/ then start your server
 
-    npm start
+        npm start
 
 
 # Features
