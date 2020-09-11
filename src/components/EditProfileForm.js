@@ -11,8 +11,9 @@ import {
     InputGroupAddon,
     InputGroupText,
     InputGroup,
-    Col,
+    Col
 } from "reactstrap";
+import ConfirmationPopUp from "../containers/ConfirmationPopUp";
 
 function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) {
     const usStates = [
@@ -36,6 +37,7 @@ function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) 
     const [birthdateFocus, setBirthdateFocus] = React.useState(false);
     const [locationFocus, setLocationFocus] = React.useState(false);
     const [emailFocus, setEmailFocus] = React.useState(false);
+    const [modalOpen, setModalOpen] = React.useState(false);
 
     React.useEffect(() => {
         document.body.classList.add("login-page");
@@ -173,10 +175,11 @@ function EditProfileForm({user, close, editUserProfile, logout, deleteProfile}) 
                 className="btn-round"
                 color="primary"
                 size="lg"
-                onClick={() => deleteUser()}
+                onClick={()=>setModalOpen(true)}
                 >
                 Delete Account
                 </Button>
+                <ConfirmationPopUp isOpen={modalOpen} close={setModalOpen} confirmedAction={deleteUser} modalMessage={'Are you sure you want to delete your account?'}/>
                 </Card>
                 </Col>
             </div>

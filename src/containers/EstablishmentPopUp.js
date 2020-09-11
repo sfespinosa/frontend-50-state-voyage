@@ -120,6 +120,8 @@ class EstablishmentPopUp extends React.Component {
             }
             this.props.addToMapMarkers(mapMarkerData)
         }
+
+        
     }
 
     handleCollectionEdit = e => {
@@ -178,16 +180,7 @@ class EstablishmentPopUp extends React.Component {
                     <EditEstablishment {...this.state} handleCollectionEdit={this.handleCollectionEdit} viewEstablishment={this.props.viewEstablishment} handleCollectionRemoval={this.handleCollectionRemoval} user={this.props.user} handleCollectionSubmit={this.handleCollectionSubmit}/>
                     : <AddEstablishment {...this.state} handleCollectionSubmit={this.handleCollectionSubmit} handleEstablishmentSubmit={this.handleEstablishmentSubmit}/>
                     }
-                {/* <hr></hr> */}
                 </ModalBody>
-                {/* <ModalFooter>
-                <Button
-                    color="info"
-                    type="button"
-                    onClick={this.props.toggleModal}
-                >Close
-                </Button>
-                </ModalFooter> */}
             </Modal>
     )}
 }
