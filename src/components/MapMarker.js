@@ -37,9 +37,9 @@ const MapMarker = ({establishment, category, handleMarkerClick, lat, lng}) => {
         <i className="material-icons md-dark md-36 info600" id={establishment.reference_id} onClick={() => handleMarkerClick(lat, lng)}>{renderMapMarkerIcon(category)}</i>{' '}
             <UncontrolledTooltip placement='top' target={establishment.reference_id} delay={0}>
                 <img src={establishment.img_url} className='popover-image' alt='establishment thumbnail'/><br/>
-                {establishment.name}<br/>
+                <strong>{establishment.name}</strong><br/>
                 {establishment.address}<br/>
-                Category: {category ? category : 'n/a'}
+                <em>Category: {category ? category : 'n/a'}</em>
             </UncontrolledTooltip>
         </>
     )

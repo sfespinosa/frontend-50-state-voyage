@@ -19,7 +19,7 @@ export default function EstablishmentCard(props){
             <CardBody>
                 <CardTitle>{props.establishment.name}</CardTitle>
                 <CardSubtitle>{props.establishment.address}</CardSubtitle>
-                <CardText><strong>Your {props.user.id === props.user_id ? null : <a href={`/users/${props.user_id}`}>Friend's </a>}Comments:</strong> "{props.user_comments}"</CardText>
+                <CardText><strong>{props.user.id === props.user_id ? 'Your ' : <a href={`/users/${props.user_id}`}>User's </a>}Comments:</strong> "{props.user_comments}"</CardText>
                 <Button color='info' onClick={()=>props.viewDetails(props)}>View Details</Button>
                 {props.user.id === props.user_id ? <Button color='primary' onClick={()=>setModalOpen(true)}>Remove</Button> : null}
             </CardBody>

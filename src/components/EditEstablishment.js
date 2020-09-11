@@ -29,10 +29,14 @@ function EditEstablishment ({ handleCollectionSubmit, handleCollectionEdit, view
             <div>
                 <strong>Your {viewEstablishment.user_id === user.id ? null : <a href={`/users/${viewEstablishment.user_id}`}>Friend's </a>}Comments: </strong><br/>{viewEstablishment.user_comments}<br/>
                 <strong>Visited Before? </strong>{viewEstablishment.visited ? 'Yes' : 'No'}<br/>
-                <strong>Map Marker Added? </strong>{viewEstablishment.map_marker ? `Yes - Category: ${viewEstablishment.map_marker.category}`: 'No'}<br/>
+                {viewEstablishment.user_id === user.id ? viewMapMarkerInfo() : null}
                 {renderButtons()}
             </div>
         )
+    }
+
+    const viewMapMarkerInfo = () => {
+        return <div><strong>Map Marker Added? </strong>{viewEstablishment.map_marker ? `Yes - Category: ${viewEstablishment.map_marker.category}`: 'No'}<br/></div>
     }
 
     const renderButtons = () => {
