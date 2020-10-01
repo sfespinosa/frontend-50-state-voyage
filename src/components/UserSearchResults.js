@@ -3,8 +3,7 @@ import{
     Card,
     CardBody,
     Row,
-    Col,
-    CardColumns
+    Col
   } from "reactstrap";
 const UserSearchResults = (props) => {
 

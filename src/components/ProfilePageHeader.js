@@ -26,7 +26,7 @@ function ProfilePageHeader(props) {
     return (
     <Container className='profile-page'>
     <div className="photo-container">
-      <img alt="..." src={require("../assets/img/default-avatar.png")}></img>
+      <img alt="..." src={props.user.id === 16 ? require("../assets/img/sandra.png") : require("../assets/img/scottrick.jpeg") }></img>
     </div>
     <h3 className="title">{props.user.username}</h3>
     <p className="category">{props.user.name}<br/>
