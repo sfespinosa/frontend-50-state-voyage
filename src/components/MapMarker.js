@@ -28,7 +28,7 @@ const MapMarker = ({establishment, category, handleMarkerClick, lat, lng}) => {
             case 'Sights/Views':
                 return 'local_see'
             default:
-                return 'other'
+                return 'place'
         }
     }
 

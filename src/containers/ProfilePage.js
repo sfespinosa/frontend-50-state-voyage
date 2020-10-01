@@ -95,6 +95,15 @@ function ProfilePage(props) {
     return result
   }
   
+  const renderProfileEstablishmentCollection = () => {
+    if (profileUser) {
+      return props.establishmentCollection.filter(ec => ec.user_id.toString() === profileUser.id.toString())
+    } else {
+      return []
+    }
+  }
+
+  console.log(profileUser)
   return (
       <div className="wrapper">
         <NavBar user={props.user} logout={props.logout} true={true}/>
@@ -102,7 +111,7 @@ function ProfilePage(props) {
         <div className="section">
             {confirmCurrentUser() ? renderEditProfileButton() : renderFollowUserButton()}
         </div>
-            <ProfilePageBody confirmCurrentUser={confirmCurrentUser()} profileEstablishmentCollection={props.establishmentCollection.filter(ec => ec.user_id.toString() === profileUser.id.toString())}/>
+            <ProfilePageBody confirmCurrentUser={confirmCurrentUser()} profileEstablishmentCollection={renderProfileEstablishmentCollection()}/>
       </div>
   );
 }
